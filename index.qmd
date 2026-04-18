@@ -39,7 +39,7 @@ In this website, you will find my coursework. Materials here are based on <a hre
 
 ::::::: card-grid
 :::::: card
-<a href="In_class_Ex/In_class_Ex01/In_class_Ex01.html">
+<a href="In_class_Ex/In_class_Ex01/In_class_ex01.html">
 
 ::: card-image
 <img src="images/inclass_ex1_preview.png" alt="In-class Exercise 1 preview"/>
