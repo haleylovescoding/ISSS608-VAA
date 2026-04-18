@@ -12,6 +12,10 @@ website:
         menu:
           - text: "Hands-on Excercises-1"
             href: Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html
+      - text: "In-class Excercises"
+        menu:
+          - text: "In-class Excercises-1"
+            href: In-class Ex/In-class Ex01/In-class ex01.html
     right:
       - text: "About"
         href: about.html

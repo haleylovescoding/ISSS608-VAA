@@ -1,0 +1,46 @@
+---
+title: "In-class Exercise"
+subtitle: "A Layered Grammar of Graphics: ggplot2 methods"
+author: "Thi Thanh Van Tran"
+date: "April 18, 2026"
+date-modified: "April 18, 2026"
+format:
+  html:
+    toc: true
+    number-sections: true
+    number-depth: 3
+    code-fold: false
+    code-tools: true
+    code-copy: true
+execute:
+  eval: true
+  echo: true
+  warning: false
+  freeze: false
+---
+
+# Getting started
+
+## Installing and loading the required libraries
+
+::: callout-note
+**Note:** Ensure that the [pacman](https://cran.r-project.org/web/packages/pacman/) package has already been installed.
+:::
+
+The code chunk below uses `p_load()` of pacman package to check if readxl packages are installed in the computer. If they are, then they will be launched into R. Otherwise,readxl will be installed and launched into R.
+
+```{r}
+pacman::p_load(readxl)
+```
+
+## Importing data
+
+-   The code chunk below imports *Superstore.csv* into R environment by using [*read_excel()*](https://readr.tidyverse.org/reference/read_delim.html) function of [**readr**](https://readr.tidyverse.org/) package.
+-   **readr** is one of the tidyverse package.
+
+```{r}
+Superstore <- read_excel("data/Superstore.csv")
+```
+
+**exam_data contains:**
+---

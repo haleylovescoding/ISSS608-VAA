@@ -7,6 +7,27 @@
     "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
+    "objectID": "In-class Ex/In-class Ex01/In-class ex01.html",
+    "href": "In-class Ex/In-class Ex01/In-class ex01.html",
+    "title": "In-class Exercise",
+    "section": "",
+    "text": "Note\n\n\n\nNote: Ensure that the pacman package has already been installed.\n\n\nThe code chunk below uses p_load() of pacman package to check if readxl packages are installed in the computer. If they are, then they will be launched into R. Otherwise,readxl will be installed and launched into R.\n\npacman::p_load(readxl)\n\n\n\n\n\nThe code chunk below imports Superstore.csv into R environment by using read_excel() function of readr package.\nreadr is one of the tidyverse package.\n\n\nSuperstore &lt;- read_excel(\"data/Superstore.csv\")"
+  },
+  {
+    "objectID": "In-class Ex/In-class Ex01/In-class ex01.html#installing-and-loading-the-required-libraries",
+    "href": "In-class Ex/In-class Ex01/In-class ex01.html#installing-and-loading-the-required-libraries",
+    "title": "In-class Exercise",
+    "section": "",
+    "text": "Note\n\n\n\nNote: Ensure that the pacman package has already been installed.\n\n\nThe code chunk below uses p_load() of pacman package to check if readxl packages are installed in the computer. If they are, then they will be launched into R. Otherwise,readxl will be installed and launched into R.\n\npacman::p_load(readxl)"
+  },
+  {
+    "objectID": "In-class Ex/In-class Ex01/In-class ex01.html#importing-data",
+    "href": "In-class Ex/In-class Ex01/In-class ex01.html#importing-data",
+    "title": "In-class Exercise",
+    "section": "",
+    "text": "The code chunk below imports Superstore.csv into R environment by using read_excel() function of readr package.\nreadr is one of the tidyverse package.\n\n\nSuperstore &lt;- read_excel(\"data/Superstore.csv\")"
+  },
+  {
     "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html",
     "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html",
     "title": "Hands-on Exercise 1",
@@ -179,6 +200,6 @@
     "href": "index.html",
     "title": "Visual Analytics and Applications",
     "section": "",
-    "text": "Hello I am Tran Thi Thanh Van, you can call me Haley.\nWelcome to ISSS608 Visual Analytics and Applications homepage.\nIn this website, you will find my coursework. Materials here are based on https://isss608-ay2025-26apr.netlify.app by Prof Kam Tin Seong from SMU.\n\n\nHands On Exercise\n\n\n\n\n\n\n\n\nHands-on Exercise 1 - A Layered Grammar of Graphics: ggplot2 methods\n\n\nTHI THANH VAN TRAN APR 16, 2026"
+    "text": "Hello I am Tran Thi Thanh Van, you can call me Haley.\nWelcome to ISSS608 Visual Analytics and Applications homepage.\nIn this website, you will find my coursework. Materials here are based on https://isss608-ay2025-26apr.netlify.app by Prof Kam Tin Seong from SMU.\n\n\nHands On Exercise\n\n\n\n\n\n\n\n\nHands-on Exercise 1 - A Layered Grammar of Graphics: ggplot2 methods\n\n\nTHI THANH VAN TRAN APR 16, 2026\n\n\n\n\n\n\n\nIn-class Exercise\n\n\n\n\n\n\n\n\nname laters\n\n\nTHI THANH VAN TRAN APR 18, 2026"
   }
 ]

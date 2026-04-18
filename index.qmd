@@ -35,4 +35,25 @@ In this website, you will find my coursework. Materials here are based on <a hre
 ::::::
 :::::::
 
-------------------------------------------------------------------------
+# In-class Exercise
+
+::::::: card-grid
+:::::: card
+<a href="In-class Ex/In-class Ex01/In-class Ex01.html">
+
+::: card-image
+<img src="images/ex2-preview.png" alt="In-class Exercise 1 preview"/>
+:::
+
+:::: card-content
+<h3>name laters</h3>
+
+::: card-footer
+[THI THANH VAN TRAN]{.author} [APR 18, 2026]{.date}
+:::
+::::
+
+</a>
+::::::
+:::::::
+
