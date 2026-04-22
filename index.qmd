@@ -44,7 +44,7 @@ In this website, you will find my coursework. Materials here are based on <a hre
 :::
 
 :::: card-content
-<h3>Hands-on Exercise 2 - A Layered Grammar of Graphics: ggplot2 methods</h3>
+<h3>Hands-on Exercise 2 - Beyond ggplot2 Fundamentals</h3>
 
 ::: card-footer
 [THI THANH VAN TRAN]{.author} [APR 22, 2026]{.date}
