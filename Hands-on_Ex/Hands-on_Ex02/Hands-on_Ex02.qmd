@@ -1492,9 +1492,5 @@ low_performers_pct <- sum(exam_ranked$Percentile <= 10) / n_students * 100
 -   [hrbrthemes](https://cinc.rud.is/web/packages/hrbrthemes/)
 -   [R for Visual Analytics - Chapter 2](https://r4va.netlify.app/chap02)
 
----
 
-**Analysis Completed:** `r format(Sys.time(), '%B %d, %Y at %H:%M:%S')`
-
-**Data Source:** Primary 3 Examination Results (`r n_students` students, `r ncol(exam_data)` variables)
 
