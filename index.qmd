@@ -15,69 +15,62 @@ In this website, you will find my coursework. Materials here are based on <a hre
 
 # Hands On Exercise
 
-::::::: {.card-grid}
-
-:::::: {.card}
+::::::::::: card-grid
+:::::: card
 <a href="Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html">
 
-::: {.card-image}
+::: card-image
 <img src="images/ex1-preview.png" alt="Exercise 1 preview"/>
 :::
 
-:::: {.card-content}
+:::: card-content
 <h3>Hands-on Exercise 1 - A Layered Grammar of Graphics: ggplot2 methods</h3>
 
-::: {.card-footer}
-<span class="author">Thi Thanh Van Tran</span>
-<span class="date">Apr 16, 2026</span>
+::: card-footer
+[Thi Thanh Van Tran]{.author} [Apr 16, 2026]{.date}
 :::
 ::::
 
 </a>
 ::::::
 
-:::::: {.card}
+:::::: card
 <a href="Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html">
 
-::: {.card-image}
+::: card-image
 <img src="images/ex2-preview.png" alt="Exercise 2 preview"/>
 :::
 
-:::: {.card-content}
+:::: card-content
 <h3>Hands-on Exercise 2 - Beyond ggplot2 Fundamentals</h3>
 
-::: {.card-footer}
-<span class="author">Thi Thanh Van Tran</span>
-<span class="date">Apr 22, 2026</span>
+::: card-footer
+[Thi Thanh Van Tran]{.author} [Apr 22, 2026]{.date}
 :::
 ::::
 
 </a>
 ::::::
-
-:::::::
+:::::::::::
 
 # In-class Exercise
 
-::::::: {.card-grid}
-
-:::::: {.card}
+::::::: card-grid
+:::::: card
 <a href="In_class_Ex/In_class_Ex01/In_class_Ex01.html">
 
-::: {.card-image}
+::: card-image
 <img src="images/inclass_ex1_preview.png" alt="In-class Exercise 1 preview"/>
 :::
 
-:::: {.card-content}
+:::: card-content
 <h3>Analysing Superstore dataset</h3>
 
-::: {.card-footer}
-<span class="author">Thi Thanh Van Tran</span>
-<span class="date">Apr 18, 2026</span>
+::: card-footer
+[Thi Thanh Van Tran]{.author} [Apr 18, 2026]{.date}
 :::
 ::::
 
 </a>
 ::::::
-
 :::::::
