@@ -1,38 +1,26 @@
 {
-  "index.qmd": {
-    "index.html": "d31f2ba2"
-  },
-  "about.qmd": {
-    "about.html": "bdf76c64"
-  },
-  "Hands-on_Ex01.qmd": {
-    "Hands-on_Ex01.html": "20058d40"
-  },
-  "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.qmd": {
-    "Hands-on_Ex01.html": "7a692335"
-  },
-  "In-class Ex/In-class Ex01/In-class ex01.qmd": {
-    "In-class ex01.html": "a0d43093"
-  },
-  "In_class_Ex/In_class_Ex01/In-class ex01.qmd": {
-    "In-class ex01.html": "cd6f9547"
-  },
-  "In_class_Ex/In_class_Ex01/In_class_ex01.qmd": {
-    "In_class_ex01.html": "581d1405"
+  "Hands-on_Ex/Hands-on_Ex03b/Hands-on_Ex03b.qmd": {
+    "Hands-on_Ex03b.html": "a8cd96b4"
   },
   "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.qmd": {
-    "Hands-on_Ex02.html": "448aaef8"
+    "Hands-on_Ex02.html": "aa462a68"
   },
-  "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.qmd": {
-    "Hands-on_Ex03.html": "51c679c6"
+  "Hands-on_Ex/Hands-on_Ex03a/Hands-on_Ex03a.qmd": {
+    "Hands-on_Ex03a.html": "91eeeb5f"
+  },
+  "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.qmd": {
+    "Hands-on_Ex01.html": "89931b6d"
+  },
+  "index.qmd": {
+    "index.html": "7443ddb0"
   },
   "In_class_Ex/In_class_Ex02/In_class_ex02.qmd": {
-    "In_class_ex02.html": "8f8363fa"
+    "In_class_ex02.html": "e1282e88"
   },
-  "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.qmd": {
-    "Hands-on_Ex03b.html": "a4ac6938"
+  "In_class_Ex/In_class_Ex01/In_class_ex01.qmd": {
+    "In_class_ex01.html": "6b1968b6"
   },
-  "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.qmd": {
-    "Hands-on_Ex03a.html": "b57e21fd"
+  "about.qmd": {
+    "about.html": "7b0f8d17"
   }
 }

@@ -1,0 +1,489 @@
+---
+title: "In-class Exercise"
+subtitle: "Analysing Superstore dataset"
+author: "Thi Thanh Van Tran"
+date: "April 18, 2026"
+date-modified: "last-modified"
+format:
+  html:
+    toc: true
+    number-sections: true
+    number-depth: 3
+    code-fold: false
+    code-tools: true
+    code-copy: true
+execute:
+  eval: true
+  echo: true
+  warning: false
+  freeze: false
+---
+
+# Getting Started
+
+## Installing and Loading the Required Libraries
+
+::: callout-note
+**Note:** Ensure that the [pacman](https://cran.r-project.org/web/packages/pacman/) package has already been installed.
+:::
+
+The code chunk below uses `p_load()` of pacman package to check if required packages are installed. If they are, then they will be launched into R. Otherwise, they will be installed and launched into R.
+
+```{r}
+pacman::p_load(readxl, tidyverse, ggplot2, scales, patchwork, lubridate)
+```
+
+## Importing Data
+
+The code chunk below imports *Superstore.csv* into R environment by using [*read_excel()*](https://readxl.tidyverse.org/reference/read_excel.html) function of [**readxl**](https://readxl.tidyverse.org/) package.
+
+**Note:** Despite the .csv extension, this is actually an Excel file format.
+
+```{r}
+superstore <- read_excel("data/Superstore.xls")
+```
+
+# Data Overview
+
+## Examining the Dataset Structure
+
+```{r}
+# Display dataset dimensions
+dim(superstore)
+
+# View column names and data types
+glimpse(superstore)
+
+# Display first few rows
+head(superstore)
+```
+
+## Summary Statistics
+
+```{r}
+# Summary of numerical variables
+summary(superstore[, c("Sales", "Quantity", "Discount", "Profit", "Order Date", "Ship Date")])
+
+# Check for missing values
+colSums(is.na(superstore))
+```
+
+::: callout-important
+**Key Observations:**
+
+-   Dataset contains **10,194 transactions** across **21 variables**
+-   Date range: 2022-01-03 to 2025-12-30 (4 years)
+-   Average profit per transaction: \$28.67
+-   Discount ranges from 0% to 80%
+:::
+
+# Exploratory Data Analysis
+
+## Profitability Analysis by Category
+
+```{r}
+# Calculate profit metrics by category
+category_profit <- superstore %>%
+  group_by(Category) %>%
+  summarise(
+    Total_Profit = sum(Profit),
+    Avg_Profit = mean(Profit),
+    Total_Sales = sum(Sales),
+    Count = n()
+  ) %>%
+  arrange(desc(Total_Profit))
+
+category_profit
+```
+
+### Visualization: Profit by Category
+
+```{r}
+#| fig-width: 10
+#| fig-height: 6
+
+ggplot(superstore, aes(x = reorder(Category, Profit, FUN = sum), y = Profit, fill = Category)) +
+  geom_boxplot(alpha = 0.7) +
+  stat_summary(fun = sum, geom = "point", shape = 23, size = 4, fill = "red") +
+  scale_fill_brewer(palette = "Set2") +
+  scale_y_continuous(labels = dollar_format()) +
+  coord_flip() +
+  labs(
+    title = "Profit Distribution by Category",
+    subtitle = "Red diamonds indicate total profit per category",
+    x = "Category",
+    y = "Profit per Transaction",
+    caption = "Source: Superstore Dataset"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    legend.position = "none"
+  )
+```
+
+::: callout-tip
+**Finding:** Technology products show the highest profitability with both higher median profit and total profit (\$146,543), despite having fewer transactions than Office Supplies.
+:::
+
+## Sub-Category Performance Analysis
+
+```{r}
+# Analyze profitability by sub-category
+subcategory_profit <- superstore %>%
+  group_by(`Sub-Category`) %>%
+  summarise(
+    Total_Profit = sum(Profit),
+    Avg_Profit = mean(Profit),
+    Count = n()
+  ) %>%
+  arrange(Total_Profit)
+
+# Display top and bottom performers
+head(subcategory_profit, 5)
+tail(subcategory_profit, 5)
+```
+
+### Visualization: Sub-Category Profitability
+
+```{r}
+#| fig-width: 12
+#| fig-height: 8
+
+ggplot(subcategory_profit, aes(x = reorder(`Sub-Category`, Total_Profit), y = Total_Profit)) +
+  geom_col(aes(fill = Total_Profit > 0), alpha = 0.8) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black", linewidth = 0.5) +
+  scale_fill_manual(
+    values = c("TRUE" = "#2ecc71", "FALSE" = "#e74c3c"),
+    labels = c("Profitable", "Unprofitable")
+  ) +
+  scale_y_continuous(labels = dollar_format()) +
+  coord_flip() +
+  labs(
+    title = "Total Profit by Sub-Category",
+    subtitle = "Tables, Bookcases, and Supplies show negative profitability",
+    x = "Sub-Category",
+    y = "Total Profit",
+    fill = "Status",
+    caption = "Source: Superstore Dataset"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    legend.position = "bottom"
+  )
+```
+
+::: callout-warning
+**Critical Finding:** Three sub-categories are unprofitable:
+
+-   **Tables:** -\$17,753 (worst performer)
+-   **Bookcases:** -\$3,632
+-   **Supplies:** -\$1,171
+
+These require immediate strategic review!
+:::
+
+## The Discount Problem
+
+```{r}
+# Analyze relationship between discount and profitability
+discount_analysis <- superstore %>%
+  mutate(
+    Profit_Status = ifelse(Profit > 0, "Profitable", "Unprofitable"),
+    Discount_Range = cut(Discount, 
+                        breaks = c(0, 0.1, 0.2, 0.3, 0.5, 1.0),
+                        labels = c("0-10%", "11-20%", "21-30%", "31-50%", "50%+"),
+                        include.lowest = TRUE)
+  )
+
+# Compare average discount
+discount_comparison <- superstore %>%
+  mutate(Profit_Status = ifelse(Profit > 0, "Profitable", "Unprofitable")) %>%
+  group_by(Profit_Status) %>%
+  summarise(
+    Avg_Discount = mean(Discount),
+    Count = n(),
+    Total_Profit = sum(Profit)
+  )
+
+discount_comparison
+```
+
+### Visualization: Discount vs Profitability
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+
+p1 <- ggplot(superstore, aes(x = Discount, y = Profit)) +
+  geom_point(alpha = 0.3, color = "#3498db") +
+  geom_smooth(method = "lm", se = TRUE, color = "#e74c3c", linewidth = 1.5) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  scale_x_continuous(labels = percent_format()) +
+  scale_y_continuous(labels = dollar_format()) +
+  labs(
+    title = "Discount vs Profit Relationship",
+    x = "Discount Rate",
+    y = "Profit"
+  ) +
+  theme_minimal()
+
+p2 <- ggplot(discount_analysis, aes(x = Discount_Range, fill = Profit_Status)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(values = c("Profitable" = "#2ecc71", "Unprofitable" = "#e74c3c")) +
+  labs(
+    title = "Profitability Rate by Discount Range",
+    x = "Discount Range",
+    y = "Percentage of Transactions",
+    fill = "Status"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+p1 + p2
+```
+
+::: callout-important
+**Major Insight:**
+
+-   Profitable orders average **8% discount**
+-   Unprofitable orders average **48% discount**
+-   Clear negative correlation: higher discounts = lower profitability
+-   Transactions with 50%+ discount are predominantly unprofitable
+:::
+
+## Regional Performance
+
+```{r}
+# Analyze performance by region
+regional_performance <- superstore %>%
+  group_by(Region) %>%
+  summarise(
+    Total_Sales = sum(Sales),
+    Total_Profit = sum(Profit),
+    Avg_Profit = mean(Profit),
+    Count = n(),
+    Profit_Margin = (Total_Profit / Total_Sales) * 100
+  ) %>%
+  arrange(desc(Total_Profit))
+
+regional_performance
+```
+
+### Visualization: Regional Analysis
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+
+p3 <- ggplot(regional_performance, aes(x = reorder(Region, Total_Profit), y = Total_Profit, fill = Region)) +
+  geom_col() +
+  geom_text(aes(label = dollar(Total_Profit, accuracy = 1)), 
+            hjust = -0.1, size = 4) +
+  scale_y_continuous(labels = dollar_format(), limits = c(0, 120000)) +
+  scale_fill_brewer(palette = "Set3") +
+  coord_flip() +
+  labs(
+    title = "Total Profit by Region",
+    x = "Region",
+    y = "Total Profit"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p4 <- ggplot(regional_performance, aes(x = reorder(Region, Avg_Profit), y = Avg_Profit, fill = Region)) +
+  geom_col() +
+  geom_text(aes(label = dollar(Avg_Profit, accuracy = 0.1)), 
+            hjust = -0.1, size = 4) +
+  scale_y_continuous(labels = dollar_format(), limits = c(0, 40)) +
+  scale_fill_brewer(palette = "Set3") +
+  coord_flip() +
+  labs(
+    title = "Average Profit per Transaction by Region",
+    x = "Region",
+    y = "Average Profit"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p3 + p4
+```
+
+## Temporal Analysis
+
+```{r}
+# Prepare data for time series analysis
+monthly_trends <- superstore %>%
+  mutate(
+    Year = year(`Order Date`),
+    Month = floor_date(`Order Date`, "month")
+  ) %>%
+  group_by(Month, Category) %>%
+  summarise(
+    Total_Sales = sum(Sales),
+    Total_Profit = sum(Profit),
+    .groups = "drop"
+  )
+
+# Calculate overall monthly metrics
+monthly_overall <- superstore %>%
+  mutate(Month = floor_date(`Order Date`, "month")) %>%
+  group_by(Month) %>%
+  summarise(
+    Total_Sales = sum(Sales),
+    Total_Profit = sum(Profit),
+    Profit_Margin = (Total_Profit / Total_Sales) * 100
+  )
+```
+
+### Visualization: Sales and Profit Trends
+
+```{r}
+#| fig-width: 14
+#| fig-height: 8
+
+p5 <- ggplot(monthly_trends, aes(x = Month, y = Total_Sales, color = Category)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2, alpha = 0.6) +
+  scale_y_continuous(labels = dollar_format()) +
+  scale_color_brewer(palette = "Set1") +
+  labs(
+    title = "Monthly Sales Trend by Category",
+    x = "Month",
+    y = "Total Sales",
+    color = "Category"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+p6 <- ggplot(monthly_overall, aes(x = Month, y = Profit_Margin)) +
+  geom_line(color = "#2c3e50", linewidth = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  geom_smooth(method = "loess", se = TRUE, color = "#e74c3c", alpha = 0.2) +
+  scale_y_continuous(labels = percent_format(scale = 1)) +
+  labs(
+    title = "Monthly Profit Margin Trend",
+    x = "Month",
+    y = "Profit Margin (%)"
+  ) +
+  theme_minimal()
+
+p5 / p6
+```
+
+## Customer Segment Analysis
+
+```{r}
+# Analyze by customer segment
+segment_analysis <- superstore %>%
+  group_by(Segment) %>%
+  summarise(
+    Total_Sales = sum(Sales),
+    Total_Profit = sum(Profit),
+    Avg_Profit = mean(Profit),
+    Count = n(),
+    Avg_Discount = mean(Discount)
+  ) %>%
+  arrange(desc(Total_Profit))
+
+segment_analysis
+```
+
+### Visualization: Segment Performance
+
+```{r}
+#| fig-width: 10
+#| fig-height: 6
+
+ggplot(superstore, aes(x = Sales, y = Profit, color = Segment)) +
+  geom_point(alpha = 0.4, size = 2) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 1.5) +
+  facet_wrap(~Segment) +
+  scale_x_continuous(labels = dollar_format()) +
+  scale_y_continuous(labels = dollar_format()) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    title = "Sales vs Profit by Customer Segment",
+    subtitle = "Relationship between sales and profit varies across segments",
+    x = "Sales Amount",
+    y = "Profit",
+    color = "Segment"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "none"
+  )
+```
+
+# Key Insights and Recommendations
+
+## Summary of Critical Findings
+
+```{r}
+# Create summary table of key metrics
+key_metrics <- tibble(
+  Metric = c(
+    "Total Transactions",
+    "Total Sales",
+    "Total Profit",
+    "Overall Profit Margin",
+    "Unprofitable Transactions",
+    "Loss from Unprofitable Transactions",
+    "Most Profitable Category",
+    "Least Profitable Sub-Category"
+  ),
+  Value = c(
+    format(nrow(superstore), big.mark = ","),
+    dollar(sum(superstore$Sales)),
+    dollar(sum(superstore$Profit)),
+    paste0(round((sum(superstore$Profit) / sum(superstore$Sales)) * 100, 2), "%"),
+    paste0(format(sum(superstore$Profit < 0), big.mark = ","), 
+           " (", round(mean(superstore$Profit < 0) * 100, 1), "%)"),
+    dollar(sum(superstore$Profit[superstore$Profit < 0])),
+    "Technology",
+    "Tables"
+  )
+)
+
+knitr::kable(key_metrics, caption = "Superstore Performance Summary")
+```
+
+::: {.callout-note appearance="default" icon="true"}
+## Business Recommendations
+
+1.  **Discount Strategy Review**
+
+    -   Implement discount caps (max 30%) especially for Furniture
+    -   High discounts (50%+) are destroying profitability
+    -   Average profitable discount: 8% vs unprofitable: 48%
+
+2.  **Product Line Optimization**
+
+    -   Consider discontinuing or repricing Tables (-\$17,753 loss)
+    -   Review Bookcases and Supplies categories
+    -   Expand Copiers and Phones product lines (highest profit margins)
+
+3.  **Regional Focus**
+
+    -   West region is the strongest performer (\$110,799 profit)
+    -   Central region needs strategic intervention (lowest avg profit)
+    -   Consider targeted marketing in underperforming regions
+
+4.  **Segment Strategy**
+
+    -   Home Office segment has highest profit per transaction (\$33.83)
+    -   Consumer segment provides volume; optimize for margin improvement
+    -   Corporate segment shows strong potential for growth
+:::
+
+# Appendix
+
+## Session Information
+
+```{r}
+sessionInfo()
+```
+
