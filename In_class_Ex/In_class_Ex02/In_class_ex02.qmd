@@ -85,6 +85,15 @@ The dataset is loaded from an Excel file using `read_excel()` from the **readxl*
 ```{r}
 #| code-fold: false
 superstore <- read_excel("data/Superstore.xls")
+# Add derived time variables for temporal analysis
+superstore <- superstore %>%
+  mutate(
+    Year      = year(`Order Date`),
+    Month     = month(`Order Date`, label = TRUE, abbr = TRUE),
+    YearMonth = floor_date(`Order Date`, "month"),
+    Quarter   = paste0("Q", quarter(`Order Date`)),
+    ShipDays  = as.numeric(difftime(`Ship Date`, `Order Date`, units = "days"))
+  )
 ```
 
 ---
@@ -97,21 +106,19 @@ superstore <- read_excel("data/Superstore.xls")
 
 ```{r}
 #| fig-height: 7
+original_cols <- superstore   # that's it, no pipe
 
-# Summarise variable types (exclude the 5 derived cols for type chart)
-original_cols <- superstore %>%
-  select(-Year, -Month, -YearMonth, -Quarter, -ShipDays)
-
-var_types <- sapply(original_cols, function(x) class(x)[1]) %>%
-  enframe(name = "Variable", value = "Type") %>%
+# Then your sapply + enframe code works
+var_types <- sapply(original_cols, function(x) class(x)[1]) %>% 
+  enframe(name = "Variable", value = "Type") %>% 
   mutate(
     Type_Clean = case_when(
       Type %in% c("numeric", "integer", "double") ~ "Numeric",
-      Type %in% c("character", "factor")           ~ "Character",
-      str_detect(Type, "POSIX|Date")               ~ "Date / Time",
-      TRUE                                         ~ "Other"
+      Type %in% c("character", "factor") ~ "Character",
+      str_detect(Type, "POSIXct|POSIXt|Date") ~ "Date / Time",
+      TRUE ~ "Other"
     )
-  ) %>%
+  ) %>% 
   arrange(Type_Clean, Variable)
 
 type_counts <- var_types %>%
