@@ -24,7 +24,7 @@ execute:
   freeze: false
 knitr:
   opts_chunk:
-    out.width: "90%"
+    out.width: "100%"
     fig.align: "center"
     dpi: 120 
 ---
