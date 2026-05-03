@@ -3,7 +3,7 @@ project:
   output-dir: _site
 
 website:
-  title: "My note"
+  title: "My note for ISSS608"
   navbar:
     background: "#3b4d5c"
     foreground: "#ffffff"
