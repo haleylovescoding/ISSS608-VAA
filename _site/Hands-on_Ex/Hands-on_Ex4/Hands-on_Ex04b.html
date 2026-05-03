@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thi Thanh Van Tran">
+<meta name="dcterms.date" content="2026-05-03">
+
+<title>Hands-on Exercise 4b – My note for ISSS608</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-46d06dd4dc6d5287f629a84b7d6c50bc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="../../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../../site_libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="../../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">My note for ISSS608</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercises" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands-on Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercises">    
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html">
+ <span class="dropdown-text">Hands-on Excercises-1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html">
+ <span class="dropdown-text">Hands-on Excercises-2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03a/Hands-on_Ex03a.html">
+ <span class="dropdown-text">Hands-on Excercises-3a</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03b/Hands-on_Ex03b.html">
+ <span class="dropdown-text">Hands-on Excercises-3b</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex4/Hands-on_Ex04a.html">
+ <span class="dropdown-text">Hands-on Excercises-4a</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex4/Hands-on_Ex04b.html">
+ <span class="dropdown-text">Hands-on Excercises-4b</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex4/Hands-on_Ex04c.html">
+ <span class="dropdown-text">Hands-on Excercises-4a</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex4/Hands-on_Ex04d.html">
+ <span class="dropdown-text">Hands-on Excercises-4a</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-excercises" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">In-class Excercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-excercises">    
+        <li>
+    <a class="dropdown-item" href="../../In_class_Ex/In_class_Ex01/In_class_ex01.html">
+ <span class="dropdown-text">In-class Excercises-1 (Self Exploration)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In_class_Ex/In_class_Ex02/In_class_ex02.html">
+ <span class="dropdown-text">In-class Excercises-2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In_class_Ex/In_class_Ex03/In_class_ex03.html">
+ <span class="dropdown-text">In-class Excercises-3</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://haleyhome.vercel.app"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/nameishaleytran/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/HaleyTran2000"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#visual-statistical-analysis-ggstatsplot-performance-parameters" id="toc-visual-statistical-analysis-ggstatsplot-performance-parameters" class="nav-link active" data-scroll-target="#visual-statistical-analysis-ggstatsplot-performance-parameters"><span class="header-section-number">1</span> Visual Statistical Analysis — ggstatsplot, performance &amp; parameters</a></li>
+  <li><a href="#what-is-ggstatsplot" id="toc-what-is-ggstatsplot" class="nav-link" data-scroll-target="#what-is-ggstatsplot"><span class="header-section-number">1.1</span> What is <code>ggstatsplot</code>?</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">1.2</span> Getting Started</a>
+  <ul class="collapse">
+  <li><a href="#installing-and-loading-packages" id="toc-installing-and-loading-packages" class="nav-link" data-scroll-target="#installing-and-loading-packages"><span class="header-section-number">1.2.1</span> Installing and Loading Packages</a></li>
+  <li><a href="#importing-and-preparing-data" id="toc-importing-and-preparing-data" class="nav-link" data-scroll-target="#importing-and-preparing-data"><span class="header-section-number">1.2.2</span> Importing and Preparing Data</a></li>
+  </ul></li>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration"><span class="header-section-number">1.3</span> Data Exploration</a></li>
+  <li><a href="#one-sample-test-is-the-mean-cfr-different-from-2" id="toc-one-sample-test-is-the-mean-cfr-different-from-2" class="nav-link" data-scroll-target="#one-sample-test-is-the-mean-cfr-different-from-2"><span class="header-section-number">1.4</span> One-Sample Test: Is the Mean CFR Different from 2%?</a>
+  <ul class="collapse">
+  <li><a href="#unpacking-the-bayes-factor" id="toc-unpacking-the-bayes-factor" class="nav-link" data-scroll-target="#unpacking-the-bayes-factor"><span class="header-section-number">1.4.1</span> Unpacking the Bayes Factor</a></li>
+  <li><a href="#how-to-interpret-the-bayes-factor" id="toc-how-to-interpret-the-bayes-factor" class="nav-link" data-scroll-target="#how-to-interpret-the-bayes-factor"><span class="header-section-number">1.4.2</span> How to Interpret the Bayes Factor</a></li>
+  </ul></li>
+  <li><a href="#two-sample-test-cfr-in-jakarta-selatan-vs-jakarta-utara" id="toc-two-sample-test-cfr-in-jakarta-selatan-vs-jakarta-utara" class="nav-link" data-scroll-target="#two-sample-test-cfr-in-jakarta-selatan-vs-jakarta-utara"><span class="header-section-number">1.5</span> Two-Sample Test: CFR in Jakarta Selatan vs Jakarta Utara</a></li>
+  <li><a href="#one-way-anova-cfr-across-five-mainland-cities" id="toc-one-way-anova-cfr-across-five-mainland-cities" class="nav-link" data-scroll-target="#one-way-anova-cfr-across-five-mainland-cities"><span class="header-section-number">1.6</span> One-Way ANOVA: CFR Across Five Mainland Cities</a>
+  <ul class="collapse">
+  <li><a href="#ggbetweenstats-summary-of-tests-by-type" id="toc-ggbetweenstats-summary-of-tests-by-type" class="nav-link" data-scroll-target="#ggbetweenstats-summary-of-tests-by-type"><span class="header-section-number">1.6.1</span> <code>ggbetweenstats</code> — Summary of Tests by Type</a></li>
+  </ul></li>
+  <li><a href="#correlation-test-positive-cases-vs-deaths" id="toc-correlation-test-positive-cases-vs-deaths" class="nav-link" data-scroll-target="#correlation-test-positive-cases-vs-deaths"><span class="header-section-number">1.7</span> Correlation Test: Positive Cases vs Deaths</a></li>
+  <li><a href="#association-test-cfr-category-vs-city" id="toc-association-test-cfr-category-vs-city" class="nav-link" data-scroll-target="#association-test-cfr-category-vs-city"><span class="header-section-number">1.8</span> Association Test: CFR Category vs City</a></li>
+  <li><a href="#model-diagnostics-with-performance" id="toc-model-diagnostics-with-performance" class="nav-link" data-scroll-target="#model-diagnostics-with-performance"><span class="header-section-number">1.9</span> Model Diagnostics with <code>performance</code></a></li>
+  <li><a href="#visualising-model-parameters-with-parameters" id="toc-visualising-model-parameters-with-parameters" class="nav-link" data-scroll-target="#visualising-model-parameters-with-parameters"><span class="header-section-number">1.10</span> Visualising Model Parameters with <code>parameters</code></a></li>
+  <li><a href="#interactive-exploration-hover-to-identify-sub-districts" id="toc-interactive-exploration-hover-to-identify-sub-districts" class="nav-link" data-scroll-target="#interactive-exploration-hover-to-identify-sub-districts"><span class="header-section-number">1.11</span> Interactive Exploration: Hover to Identify Sub-Districts</a></li>
+  <li><a href="#summary-the-story-these-techniques-tell-together" id="toc-summary-the-story-these-techniques-tell-together" class="nav-link" data-scroll-target="#summary-the-story-these-techniques-tell-together"><span class="header-section-number">1.12</span> Summary: The Story These Techniques Tell Together</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Hands-on Exercise 4b</h1>
+<p class="subtitle lead">Visual Statistical Analysis — ggstatsplot, performance &amp; parameters</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Thi Thanh Van Tran </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 3, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 3, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+  .quarto-figure, figure {
+    max-width: 100% !important; width: 100% !important;
+    margin: 0.5rem auto !important; overflow: visible !important;
+  }
+  img.figure-img, .cell > img, .cell-output > img, .cell-output-display img {
+    width: 100% !important; height: auto !important;
+    object-fit: contain !important; display: block; margin: 0.3rem auto;
+  }
+  .cell-output-display {
+    margin: 0.4rem 0 !important; padding: 0 !important; overflow: visible !important;
+  }
+  .callout { margin-top: 0.75rem; }
+  h2 { margin-top: 2rem; }
+</style>
+<hr>
+<section id="visual-statistical-analysis-ggstatsplot-performance-parameters" class="level1 welcome-section" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Visual Statistical Analysis — ggstatsplot, performance &amp; parameters</h1>
+<p>Welcome! This exercise applies <strong>visual statistical analysis</strong> to <strong>COVID-19 sub-district data for DKI Jakarta</strong>, telling a data story from exploration through modelling. You will learn to:</p>
+<ul>
+<li>Use <strong><code>ggstatsplot</code></strong> to create publication-ready plots with embedded statistical tests (one-sample, two-sample, ANOVA, correlation, association) that follow the APA reporting standard.</li>
+<li>Understand and interpret <strong>Bayes Factors</strong> as evidence weights rather than binary p-values.</li>
+<li>Use <strong><code>performance</code></strong> to diagnose linear model assumptions visually.</li>
+<li>Use <strong><code>parameters</code></strong> + <strong><code>see</code></strong> to visualise and compare model coefficients.</li>
+</ul>
+<p>Each technique builds on the last, progressively answering: <em>Where in Jakarta did COVID-19 hit hardest, why do sub-districts differ, and can a simple model explain case counts?</em></p>
+</section>
+<hr>
+<section id="what-is-ggstatsplot" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-ggstatsplot"><span class="header-section-number">1.1</span> What is <code>ggstatsplot</code>?</h2>
+<p><a href="https://indrajeetpatil.github.io/ggstatsplot/index.html"><strong><code>ggstatsplot</code></strong></a> is an extension of <code>ggplot2</code> that embeds statistical test results directly inside plots.</p>
+<p>Two design goals distinguish it from plain <code>ggplot2</code>:</p>
+<ul>
+<li><strong>Alternative inference by default</strong> — it offers Bayesian, robust, and non-parametric options alongside frequentist tests, making it easy to choose the right method for the data.</li>
+<li><strong>APA-compliant reporting</strong> — every plot subtitle automatically formats test statistics, degrees of freedom, p-values, and effect sizes according to the APA gold standard. The example below shows the APA template for a robust t-test:</li>
+</ul>
+<blockquote class="blockquote">
+<p><em>t</em>(df) = value, <em>p</em> = value, <em>d</em> = value, 95% CI [lower, upper]</p>
+</blockquote>
+<p>This means you get publication-ready output in one function call, rather than running a test and a plot separately.</p>
+<hr>
+</section>
+<section id="getting-started" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">1.2</span> Getting Started</h2>
+<section id="installing-and-loading-packages" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="installing-and-loading-packages"><span class="header-section-number">1.2.1</span> Installing and Loading Packages</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggstatsplot, performance, parameters, see, patchwork, tidyverse, scales, plotly, janitor, kableExtra, BayesFactor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="importing-and-preparing-data" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="importing-and-preparing-data"><span class="header-section-number">1.2.2</span> Importing and Preparing Data</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>covid_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/COVID-19_DKI_Jakarta.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> covid_raw <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">id =</span> sub_district_id, <span class="at">subdistrict =</span> sub_district) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cfr           =</span> <span class="fu">if_else</span>(positive <span class="sc">&gt;</span> <span class="dv">0</span>, death <span class="sc">/</span> positive <span class="sc">*</span> <span class="dv">100</span>,     <span class="cn">NA_real_</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">recovery_rate =</span> <span class="fu">if_else</span>(positive <span class="sc">&gt;</span> <span class="dv">0</span>, recovered <span class="sc">/</span> positive <span class="sc">*</span> <span class="dv">100</span>, <span class="cn">NA_real_</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">active        =</span> positive <span class="sc">-</span> recovered <span class="sc">-</span> death,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">city_label =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">toupper</span>(city), <span class="st">"SELATAN"</span>) <span class="sc">~</span> <span class="st">"Jkt.</span><span class="sc">\n</span><span class="st">Selatan"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">toupper</span>(city), <span class="st">"UTARA"</span>)   <span class="sc">~</span> <span class="st">"Jkt.</span><span class="sc">\n</span><span class="st">Utara"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">toupper</span>(city), <span class="st">"BARAT"</span>)   <span class="sc">~</span> <span class="st">"Jkt.</span><span class="sc">\n</span><span class="st">Barat"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">toupper</span>(city), <span class="st">"PUSAT"</span>)   <span class="sc">~</span> <span class="st">"Jkt.</span><span class="sc">\n</span><span class="st">Pusat"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">toupper</span>(city), <span class="st">"TIMUR"</span>)   <span class="sc">~</span> <span class="st">"Jkt.</span><span class="sc">\n</span><span class="st">Timur"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="fu">toupper</span>(city), <span class="st">"SERIBU"</span>)  <span class="sc">~</span> <span class="st">"Kep.</span><span class="sc">\n</span><span class="st">Seribu"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> city</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Sub-districts with reliable CFR (&gt;= 10 positive cases)</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>covid_cfr <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(cfr), positive <span class="sc">&gt;=</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="data-exploration" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="data-exploration"><span class="header-section-number">1.3</span> Data Exploration</h2>
+<p>EDA is not just a warm-up — it directly motivates every statistical test that follows. The questions it surfaces become the hypotheses we test.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Variables Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Missing Data &amp; Filtering</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> covid_cfr <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Positive cases</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">list</span>(positive),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">CFR (%)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">list</span>(cfr),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Recovery rate (%)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">list</span>(recovery_rate)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"Values"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean   =</span> <span class="fu">map_dbl</span>(Values, mean,   <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median =</span> <span class="fu">map_dbl</span>(Values, median, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD     =</span> <span class="fu">map_dbl</span>(Values, sd,     <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min    =</span> <span class="fu">map_dbl</span>(Values, min,    <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max    =</span> <span class="fu">map_dbl</span>(Values, max,    <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Values)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>summary_stats <span class="sc">%&gt;%</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Summary of key variables used in statistical tests"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">align =</span> <span class="st">"c"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small">
+<caption>Summary of key variables used in statistical tests</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Mean</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Median</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">SD</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Min</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Positive cases</td>
+<td style="text-align: center;">2571.85</td>
+<td style="text-align: center;">2420.00</td>
+<td style="text-align: center;">1322.66</td>
+<td style="text-align: center;">72.00</td>
+<td style="text-align: center;">6231.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">CFR (%)</td>
+<td style="text-align: center;">1.57</td>
+<td style="text-align: center;">1.59</td>
+<td style="text-align: center;">0.44</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">4.17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Recovery rate (%)</td>
+<td style="text-align: center;">96.40</td>
+<td style="text-align: center;">96.45</td>
+<td style="text-align: center;">0.72</td>
+<td style="text-align: center;">92.49</td>
+<td style="text-align: center;">98.53</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>missing_ct <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Variable =</span> <span class="fu">c</span>(<span class="st">"cfr"</span>, <span class="st">"recovery_rate"</span>, <span class="st">"positive"</span>, <span class="st">"death"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Missing  =</span> <span class="fu">c</span>(<span class="fu">sum</span>(<span class="fu">is.na</span>(covid<span class="sc">$</span>cfr)), <span class="fu">sum</span>(<span class="fu">is.na</span>(covid<span class="sc">$</span>recovery_rate)),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sum</span>(<span class="fu">is.na</span>(covid<span class="sc">$</span>positive)), <span class="fu">sum</span>(<span class="fu">is.na</span>(covid<span class="sc">$</span>death)))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(missing_ct, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Variable, <span class="sc">-</span>Missing), <span class="at">y =</span> Missing)) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#e74c3c"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Missing), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Missing values in original data"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"cfr / recovery_rate missing where positive = 0"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Hands-on_Ex04b_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What EDA Tells Us — and What It Asks Next
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>cfr</code> and <code>recovery_rate</code> are missing only for sub-districts with zero positive cases (division-by-zero prevented). Filtering to <code>positive &gt;= 10</code> removes unstable CFR estimates — this filtered dataset (<code>covid_cfr</code>) is used for all subsequent tests.</li>
+<li>The mean CFR (~2.5%) sits noticeably above a plausible global benchmark of 2%. <strong>Is this difference real, or sampling noise?</strong> → answered by the one-sample test.</li>
+<li>CFR varies widely across sub-districts (SD &gt; mean in some cities). <strong>Are city-level differences real?</strong> → answered by the two-sample test and ANOVA.</li>
+<li>Deaths and positive cases both have extreme right-tail skew. <strong>How strong is the linear relationship?</strong> → answered by the correlation test.</li>
+<li>Sub-districts cluster unevenly into CFR severity categories by city. <strong>Is the association statistically significant?</strong> → answered by the Chi-square association test.</li>
+</ul>
+<p>EDA opens the questions; the statistical tests answer them.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="one-sample-test-is-the-mean-cfr-different-from-2" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="one-sample-test-is-the-mean-cfr-different-from-2"><span class="header-section-number">1.4</span> One-Sample Test: Is the Mean CFR Different from 2%?</h2>
+<p><strong>Question:</strong> The mean CFR is ~2.5% in the data. Is that difference from a 2% global benchmark real, or within the range of chance?</p>
+<p>We use <code>gghistostats()</code> with a Bayesian one-sample test. Rather than a binary reject/fail-to-reject, the Bayes Factor (BF₁₀) tells us <em>how strongly</em> the data support the alternative.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gghistostats</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data       =</span> covid_cfr,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x          =</span> cfr,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type       =</span> <span class="st">"bayes"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">test.value =</span> <span class="dv">2</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">bf.prior   =</span> <span class="fl">0.707</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab       =</span> <span class="st">"Case Fatality Rate (%)"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">title      =</span> <span class="st">"One-Sample Test: Mean CFR vs 2%"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption    =</span> <span class="st">"BF₁₀ &gt; 10 = strong evidence that mean CFR ≠ 2%"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Hands-on_Ex04b_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="unpacking-the-bayes-factor" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="unpacking-the-bayes-factor"><span class="header-section-number">1.4.1</span> Unpacking the Bayes Factor</h3>
+<p>A <strong>Bayes factor (BF₁₀)</strong> is the ratio of the likelihood of the data under the alternative hypothesis (H₁: mean ≠ 2%) to the likelihood under the null (H₀: mean = 2%):</p>
+<p><span class="math display">\[BF_{10} = \frac{P(\text{data} \mid H_1)}{P(\text{data} \mid H_0)}\]</span></p>
+<ul>
+<li>BF₁₀ = 5 means the data are <strong>5× more likely</strong> under H₁ than H₀.</li>
+<li>BF₁₀ = 1/5 = 0.2 means the data are <strong>5× more likely</strong> under H₀ — evidence <em>for</em> the null.</li>
+<li>Unlike a p-value, it directly quantifies the <em>weight of evidence</em>, not just whether we cross a threshold.</li>
+</ul>
+<p>The <strong>Schwarz criterion (BIC)</strong> provides a computationally efficient approximation of BF₁₀ and is what <code>ggstatsplot</code> uses internally.</p>
+</section>
+<section id="how-to-interpret-the-bayes-factor" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="how-to-interpret-the-bayes-factor"><span class="header-section-number">1.4.2</span> How to Interpret the Bayes Factor</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>BF₁₀</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&gt; 100</td>
+<td>Extreme evidence for H₁</td>
+</tr>
+<tr class="even">
+<td>30 – 100</td>
+<td>Very strong evidence for H₁</td>
+</tr>
+<tr class="odd">
+<td>10 – 30</td>
+<td>Strong evidence for H₁</td>
+</tr>
+<tr class="even">
+<td>3 – 10</td>
+<td>Moderate evidence for H₁</td>
+</tr>
+<tr class="odd">
+<td>1 – 3</td>
+<td>Anecdotal evidence for H₁</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>No evidence either way</td>
+</tr>
+<tr class="odd">
+<td>1/3 – 1</td>
+<td>Anecdotal evidence for H₀</td>
+</tr>
+<tr class="even">
+<td>1/10 – 1/3</td>
+<td>Moderate evidence for H₀</td>
+</tr>
+<tr class="odd">
+<td>&lt; 1/10</td>
+<td>Strong-to-extreme evidence for H₀</td>
+</tr>
+</tbody>
+</table>
+<p><em>Scale adapted from Jeffreys (1961), modified by Lee &amp; Wagenmakers (2013).</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What I Learned
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Bayes Factor makes the test result interpretable on a continuous scale. For Jakarta, a BF₁₀ &gt; 10 would indicate strong evidence that the mean CFR genuinely exceeds 2%, flagging the city as a higher-risk environment than a global baseline — which immediately justifies the city-level breakdown that follows.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="two-sample-test-cfr-in-jakarta-selatan-vs-jakarta-utara" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="two-sample-test-cfr-in-jakarta-selatan-vs-jakarta-utara"><span class="header-section-number">1.5</span> Two-Sample Test: CFR in Jakarta Selatan vs Jakarta Utara</h2>
+<p><strong>Question:</strong> EDA showed both cities have relatively high and spread CFR distributions. Are they actually different from each other?</p>
+<p>We use <code>ggbetweenstats()</code> with <code>type = "np"</code> (non-parametric Mann–Whitney U), which is robust to the outliers visible in EDA.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>covid_two_cities <span class="ot">&lt;-</span> covid_cfr <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(city <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"JAKARTA SELATAN"</span>, <span class="st">"JAKARTA UTARA"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">city =</span> <span class="fu">factor</span>(city, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"JAKARTA SELATAN"</span>, <span class="st">"JAKARTA UTARA"</span>)))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data                =</span> covid_two_cities,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x                   =</span> city,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">y                   =</span> cfr,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">type                =</span> <span class="st">"np"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">var.equal           =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.display    =</span> <span class="st">"all"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">centrality.plotting =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">messages            =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">title               =</span> <span class="st">"CFR Comparison: Jakarta Selatan vs Jakarta Utara"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab                =</span> <span class="st">"City"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab                =</span> <span class="st">"Case Fatality Rate (%)"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Hands-on_Ex04b_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What I Learned
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>raincloud + boxplot + half-violin</strong> display reveals distribution shape, spread, and outliers simultaneously — much richer than a simple bar chart. The plot subtitle embeds the test statistic, p-value, and <strong>Cliff’s delta</strong> (effect size for non-parametric tests, ranging −1 to +1). If p &lt; 0.05, the two cities have meaningfully different CFR patterns, which motivates expanding the comparison to all five cities.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="one-way-anova-cfr-across-five-mainland-cities" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="one-way-anova-cfr-across-five-mainland-cities"><span class="header-section-number">1.6</span> One-Way ANOVA: CFR Across Five Mainland Cities</h2>
+<p><strong>Question:</strong> If Selatan and Utara differ, what about all five mainland cities? Who are the extreme cases?</p>
+<p><code>ggbetweenstats()</code> with <code>type = "p"</code> runs Welch’s ANOVA (no equal-variance assumption) and automatically adds pairwise post-hoc brackets only for significant pairs (<code>pairwise.display = "s"</code>), with FDR correction.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>covid_anova <span class="ot">&lt;-</span> covid_cfr <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(city, <span class="st">"SERIBU"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">city_label =</span> <span class="fu">factor</span>(city_label, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Jkt.</span><span class="sc">\n</span><span class="st">Pusat"</span>, <span class="st">"Jkt.</span><span class="sc">\n</span><span class="st">Barat"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                                                    <span class="st">"Jkt.</span><span class="sc">\n</span><span class="st">Selatan"</span>, <span class="st">"Jkt.</span><span class="sc">\n</span><span class="st">Timur"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                                                    <span class="st">"Jkt.</span><span class="sc">\n</span><span class="st">Utara"</span>)))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data                 =</span> covid_anova,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">x                   =</span> city_label,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">y                   =</span> cfr,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">type                =</span> <span class="st">"p"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">var.equal           =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.comparisons =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.display    =</span> <span class="st">"s"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.adjust.method     =</span> <span class="st">"fdr"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">messages            =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">title               =</span> <span class="st">"CFR Across Mainland Jakarta Cities"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab                =</span> <span class="st">"City"</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab                =</span> <span class="st">"Case Fatality Rate (%)"</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Hands-on_Ex04b_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>aov_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(cfr <span class="sc">~</span> city_label, <span class="at">data =</span> covid_anova)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+city_label    4   2.15  0.5375    3.73 0.00571 **
+Residuals   256  36.89  0.1441                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<section id="ggbetweenstats-summary-of-tests-by-type" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="ggbetweenstats-summary-of-tests-by-type"><span class="header-section-number">1.6.1</span> <code>ggbetweenstats</code> — Summary of Tests by Type</h3>
+<p>The function automatically selects the right test based on the <code>type</code> argument:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 37%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>type</code></th>
+<th>Test used</th>
+<th>Effect size reported</th>
+<th>Post-hoc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>"p"</code> (parametric)</td>
+<td>Student’s / Welch’s <em>t</em> (2 groups); ANOVA / Welch’s F (&gt;2)</td>
+<td>Cohen’s <em>d</em>; ω²</td>
+<td>Games-Howell</td>
+</tr>
+<tr class="even">
+<td><code>"np"</code> (non-parametric)</td>
+<td>Mann–Whitney U (2 groups); Kruskal–Wallis (&gt;2)</td>
+<td>Cliff’s delta; ε²</td>
+<td>Dunn test</td>
+</tr>
+<tr class="odd">
+<td><code>"r"</code> (robust)</td>
+<td>Yuen’s trimmed-mean <em>t</em> (2 groups); robust ANOVA (&gt;2)</td>
+<td>ξ (robust <em>d</em>); ξ²</td>
+<td>Explanatory measure</td>
+</tr>
+<tr class="even">
+<td><code>"bayes"</code> (Bayesian)</td>
+<td>Bayesian <em>t</em>-test / ANOVA</td>
+<td>BF₁₀; δ posterior</td>
+<td>BF-based pairwise</td>
+</tr>
+</tbody>
+</table>
+<p>For pairwise display:</p>
+<ul>
+<li><code>"ns"</code> → show only non-significant pairs</li>
+<li><code>"s"</code> → show only significant pairs <em>(used here)</em></li>
+<li><code>"all"</code> → show everything</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What I Learned
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The ANOVA reveals which specific city pairs differ, not just whether <em>any</em> difference exists. Jakarta Timur tends to have the highest median CFR while Jakarta Pusat has the lowest — a geographic pattern that has real implications for resource allocation and intervention prioritisation. The FDR correction prevents false discoveries when making five-city comparisons simultaneously.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="correlation-test-positive-cases-vs-deaths" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="correlation-test-positive-cases-vs-deaths"><span class="header-section-number">1.7</span> Correlation Test: Positive Cases vs Deaths</h2>
+<p><strong>Question:</strong> EDA showed both variables are right-skewed with suspected outliers. Is the positive-death relationship linear and strong, or driven by a handful of hotspot sub-districts?</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatterstats</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data          =</span> covid,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x             =</span> positive,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y             =</span> death,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type          =</span> <span class="st">"parametric"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">marginal      =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">marginal.type =</span> <span class="st">"histogram"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">centrality.para =</span> <span class="st">"mean"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">title         =</span> <span class="st">"Correlation between Positive Cases and Deaths"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab          =</span> <span class="st">"Positive cases per sub-district"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab          =</span> <span class="st">"Deaths per sub-district"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">messages      =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">ggplot.component =</span> <span class="fu">list</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">colour =</span> city_label),      <span class="co"># colour by city</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>, <span class="at">name =</span> <span class="st">"City"</span>),</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Hands-on_Ex04b_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What I Learned
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The scatterplot combines a regression line, confidence band, and marginal histograms. The subtitle reports Pearson <em>r</em>, p-value, and 95% CI. A high <em>r</em> (≈ 0.85–0.9) confirms a strong positive linear relationship, but the marginal histograms expose the extreme right skew — a few hotspot sub-districts dominate. This skew is exactly what makes a plain OLS model unreliable, motivating the diagnostic checks in the next section. The interactive version (Section 8) will identify which sub-districts those outliers are.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="association-test-cfr-category-vs-city" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="association-test-cfr-category-vs-city"><span class="header-section-number">1.8</span> Association Test: CFR Category vs City</h2>
+<p><strong>Question:</strong> Does the <em>proportion</em> of high/medium/low CFR sub-districts differ across cities?</p>
+<p>We bin CFR into three ordered categories and use <code>ggbarstats()</code> with a Pearson Chi-square test.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>covid_cfr_cat <span class="ot">&lt;-</span> covid_cfr <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cfr_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>      cfr <span class="sc">&lt;</span> <span class="fl">1.5</span> <span class="sc">~</span> <span class="st">"Low (&lt;1.5%)"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>      cfr <span class="sc">&lt;</span> <span class="dv">3</span>   <span class="sc">~</span> <span class="st">"Medium (1.5–3%)"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>      <span class="sc">~</span> <span class="st">"High (&gt;3%)"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cfr_cat =</span> <span class="fu">factor</span>(cfr_cat, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low (&lt;1.5%)"</span>, <span class="st">"Medium (1.5–3%)"</span>, <span class="st">"High (&gt;3%)"</span>))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbarstats</span>(</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">data          =</span> covid_cfr_cat,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">x             =</span> city_label,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">y             =</span> cfr_cat,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">type          =</span> <span class="st">"p"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">label         =</span> <span class="st">"both"</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">label.args    =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">2</span>),</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">perc.k        =</span> <span class="dv">1</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">title         =</span> <span class="st">"CFR Category Distribution by City"</span>,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab          =</span> <span class="st">"City"</span>,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab          =</span> <span class="st">"Proportion within city"</span>,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.title  =</span> <span class="st">"CFR category"</span>,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">messages      =</span> <span class="cn">FALSE</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Hands-on_Ex04b_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>chisq <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(<span class="fu">table</span>(covid_cfr_cat<span class="sc">$</span>city_label, covid_cfr_cat<span class="sc">$</span>cfr_cat))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>chisq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  table(covid_cfr_cat$city_label, covid_cfr_cat$cfr_cat)
+X-squared = 62.365, df = 10, p-value = 1.29e-09</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What I Learned
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The stacked proportional bars make it immediately clear that no city has a uniform CFR profile. Kepulauan Seribu stands out with a disproportionately high share of “High” CFR sub-districts — likely reflecting limited healthcare infrastructure in the island district. The Chi-square statistic and <strong>Cramér’s V</strong> (effect size for contingency tables) in the subtitle confirm both the significance and practical magnitude of this city-level variation. This completes the picture opened by EDA: the CFR differences across cities are real, large, and not randomly distributed.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="model-diagnostics-with-performance" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="model-diagnostics-with-performance"><span class="header-section-number">1.9</span> Model Diagnostics with <code>performance</code></h2>
+<p>Now that we know cities differ in CFR and that positive cases and deaths are strongly correlated, a natural next step is modelling. We fit a linear model predicting <code>positive</code> cases from <code>recovered</code>, <code>death</code>, and <code>city</code>. The <code>check_model()</code> function from <code>performance</code> visualises four key assumption checks simultaneously.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(positive <span class="sc">~</span> recovered <span class="sc">+</span> death <span class="sc">+</span> city, <span class="at">data =</span> covid)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(model_lm, <span class="at">panel =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What I Learned
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The four diagnostic panels reveal a consistent story:</p>
+<ul>
+<li><strong>Q-Q plot (Normality of residuals):</strong> Residuals deviate from the diagonal, particularly in the tails — normality is violated.</li>
+<li><strong>Residuals vs Fitted (Homoscedasticity):</strong> The spread of residuals increases with fitted values (fan shape), confirming heteroscedasticity — another OLS assumption broken.</li>
+<li><strong>Cook’s Distance (Influential observations):</strong> A handful of sub-districts have disproportionately large Cook’s distances, meaning they pull the regression line heavily.</li>
+<li><strong>VIF (Multicollinearity):</strong> <code>recovered</code> and <code>death</code> are both derived from <code>positive</code>, so their VIFs will be high — the predictors are collinear.</li>
+</ul>
+<p>Together, these diagnostics explain <em>why</em> the model is unreliable for count data: OLS assumes normally distributed, homoscedastic residuals, but COVID case counts are inherently non-negative integers with high variance. A <strong>Poisson or negative-binomial GLM</strong> would be more appropriate. The <code>check_model()</code> output is not just a validation step — it is a navigation tool pointing toward a better model.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="visualising-model-parameters-with-parameters" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="visualising-model-parameters-with-parameters"><span class="header-section-number">1.10</span> Visualising Model Parameters with <code>parameters</code></h2>
+<p>Even with the OLS limitations identified above, visualising the coefficients helps us understand which predictors matter most — and where the collinearity manifests.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">model_parameters</span>(model_lm, <span class="at">effects =</span> <span class="st">"fixed"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(params, <span class="at">show_intercept =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model coefficients (standardised)"</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Hands-on_Ex04b_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>params <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Parameter, Coefficient, SE, CI_low, CI_high, p) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Linear model coefficients (unscaled)"</span>, <span class="at">digits =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small">
+<caption>Linear model coefficients (unscaled)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Parameter</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Coefficient</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CI_low</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CI_high</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-11.053</td>
+<td style="text-align: right;">2.860</td>
+<td style="text-align: right;">-16.685</td>
+<td style="text-align: right;">-5.420</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">recovered</td>
+<td style="text-align: right;">1.025</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">1.022</td>
+<td style="text-align: right;">1.029</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">death</td>
+<td style="text-align: right;">0.844</td>
+<td style="text-align: right;">0.094</td>
+<td style="text-align: right;">0.659</td>
+<td style="text-align: right;">1.028</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cityJAKARTA PUSAT</td>
+<td style="text-align: right;">2.132</td>
+<td style="text-align: right;">3.139</td>
+<td style="text-align: right;">-4.049</td>
+<td style="text-align: right;">8.314</td>
+<td style="text-align: right;">0.498</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cityJAKARTA SELATAN</td>
+<td style="text-align: right;">12.937</td>
+<td style="text-align: right;">2.799</td>
+<td style="text-align: right;">7.424</td>
+<td style="text-align: right;">18.449</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cityJAKARTA TIMUR</td>
+<td style="text-align: right;">17.262</td>
+<td style="text-align: right;">2.828</td>
+<td style="text-align: right;">11.692</td>
+<td style="text-align: right;">22.831</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cityJAKARTA UTARA</td>
+<td style="text-align: right;">5.126</td>
+<td style="text-align: right;">3.470</td>
+<td style="text-align: right;">-1.707</td>
+<td style="text-align: right;">11.959</td>
+<td style="text-align: right;">0.141</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cityKAB.ADM.KEP.SERIBU</td>
+<td style="text-align: right;">10.283</td>
+<td style="text-align: right;">6.823</td>
+<td style="text-align: right;">-3.153</td>
+<td style="text-align: right;">23.719</td>
+<td style="text-align: right;">0.133</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What I Learned
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The coefficient plot shows <strong>point estimates ± 95% CI</strong> for every predictor. Standardised coefficients allow direct comparison across different scales (e.g., <code>recovered</code> vs <code>death</code>). Key observations:</p>
+<ul>
+<li><code>death</code> carries a very large positive coefficient — expected, since deaths are a subset of cases.</li>
+<li><code>recovered</code> may show a weaker or even negative coefficient once <code>death</code> is in the model — a collinearity artefact flagged by the VIF panel.</li>
+<li>Wide confidence intervals on city coefficients reflect small sub-district sample sizes within each city.</li>
+</ul>
+<p>The <code>parameters</code> + <code>see</code> combination makes this output as easy to read as a forest plot in a clinical paper — one line replaces a manual <code>tidy()</code> + <code>ggplot()</code> pipeline.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="interactive-exploration-hover-to-identify-sub-districts" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="interactive-exploration-hover-to-identify-sub-districts"><span class="header-section-number">1.11</span> Interactive Exploration: Hover to Identify Sub-Districts</h2>
+<p>Static plots revealed the <em>pattern</em> (strong correlation, skewed distribution). This interactive plot reveals the <em>labels</em> — which specific sub-districts are the outlier hotspots.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>hover_df <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tip =</span> <span class="fu">paste0</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;b&gt;"</span>, subdistrict, <span class="st">"&lt;/b&gt;&lt;br&gt;"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"City: "</span>, city, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Positive: "</span>, <span class="fu">comma</span>(positive), <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Deaths: "</span>, death</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ly</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_markers</span>(</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data     =</span> hover_df,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x        =</span> <span class="sc">~</span>positive,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y        =</span> <span class="sc">~</span>death,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">text     =</span> <span class="sc">~</span>tip,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">hoverinfo =</span> <span class="st">"text"</span>,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">marker   =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">6</span>, <span class="at">opacity =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">"#2c3e50"</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">width =</span> <span class="dv">1</span>))</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title      =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Positive Cases vs Deaths — Hover for sub-district details&lt;/b&gt;"</span>, <span class="at">x =</span> <span class="fl">0.5</span>),</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis      =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Positive cases per sub-district"</span>, <span class="at">tickformat =</span> <span class="st">","</span>),</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis      =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Deaths per sub-district"</span>, <span class="at">tickformat =</span> <span class="st">","</span>),</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_bgcolor  =</span> <span class="st">"rgba(0,0,0,0)"</span>,</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"rgba(0,0,0,0)"</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-71bd565035b2a0e145fe" style="width:100%;height:720px;"></div>
+<script type="application/json" data-for="htmlwidget-71bd565035b2a0e145fe">{"x":{"visdat":{"103502a7c0910":["function () ","plotlyVisDat"],"1035035370f3a":["function () ","data"]},"cur_data":"1035035370f3a","attrs":{"1035035370f3a":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"markers","text":{},"hoverinfo":"text","marker":{"size":6,"opacity":0.59999999999999998,"color":"#2c3e50","line":{"color":"white","width":1}},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":{"text":"<b>Positive Cases vs Deaths — Hover for sub-district details<\/b>","x":0.5},"xaxis":{"domain":[0,1],"automargin":true,"title":"Positive cases per sub-district","tickformat":","},"yaxis":{"domain":[0,1],"automargin":true,"title":"Deaths per sub-district","tickformat":","},"plot_bgcolor":"rgba(0,0,0,0)","paper_bgcolor":"rgba(0,0,0,0)","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1776,1783,2049,827,2866,1828,2541,3608,2012,2900,3656,2287,1396,2033,2765,3079,1965,2912,3924,2949,5338,5756,5574,1691,3756,3745,688,1089,5077,2729,3151,3339,2444,3293,3118,2247,2679,3440,2461,2650,2496,3220,4606,2613,5447,2002,5173,2352,4039,4595,1421,844,1237,1067,1176,1904,3210,3161,498,774,641,2257,2866,2900,439,2269,1884,1660,4036,1899,6196,2773,3227,1700,3982,1607,3284,3126,1507,1327,3410,3853,1139,1629,3851,4546,4175,1540,907,703,1442,1439,3289,6231,2635,1805,987,2815,388,1610,1842,2277,3822,1178,3306,3325,2868,2549,3779,4908,1610,934,2873,1603,1897,3817,954,2094,2365,3016,2114,4201,3918,3910,2942,2383,2206,3458,1125,1138,4299,1962,1691,1580,1942,3297,1023,1209,949,1406,1182,3540,3715,3954,5455,3438,2917,2738,2068,811,1839,1736,1893,1236,1127,435,2003,2483,2941,2996,3646,2648,4663,5168,1587,5322,1965,2154,1484,1905,2743,2461,4218,1901,4221,5806,3260,3599,3136,1746,3774,2105,5326,4494,2273,2304,1033,1587,1392,2671,3786,2247,768,2458,3234,3963,5203,5116,2420,3598,4547,2631,72,159,355,232,299,134,672,2480,4873,3513,2801,2373,2156,567,3405,1269,2356,978,3472,3125,259,2276,379,2561,4111,2098,882,943,2730,618,1879,2086,3677,4882,2082,2735,2730,2260,2089,5516,5848,3080,1351,775,1884,2024,1109,3045,2716,1946,2388,2834,1978,4319,2362,2416,2252,4225,1714,3037,3433,2215,1923,2887,2769],"y":[26,29,31,13,27,26,37,68,38,52,72,28,25,25,48,39,27,56,67,47,93,98,65,26,49,76,13,13,63,29,23,64,52,36,42,41,43,69,42,55,48,59,98,50,96,34,98,34,61,69,25,17,22,17,13,23,48,60,7,13,6,39,39,53,7,20,31,34,47,34,89,44,56,44,64,33,47,35,23,18,34,62,21,44,68,75,76,36,8,16,17,28,69,158,25,32,9,39,5,21,33,35,58,11,58,60,51,51,54,75,37,9,43,26,38,71,15,34,43,48,31,58,54,56,53,39,22,58,18,16,94,35,33,31,41,63,10,13,7,8,19,77,50,59,65,49,49,61,33,14,32,23,36,24,19,3,33,47,46,38,47,30,69,51,24,104,28,32,20,48,46,36,50,46,63,67,50,83,45,26,61,32,90,63,27,47,13,23,20,31,42,39,9,41,44,43,94,83,57,51,59,17,3,1,2,0,6,1,10,43,90,53,46,41,38,8,60,14,25,18,62,33,5,34,5,47,77,45,2,15,56,6,13,28,56,74,25,38,44,40,21,102,88,60,16,21,19,41,18,53,40,30,47,34,30,69,40,34,36,83,25,47,62,55,34,41,44],"type":"scatter","mode":"markers","text":["<b>ANCOL<\/b><br>City: JAKARTA UTARA<br>Positive: 1,776<br>Deaths: 26","<b>ANGKE<\/b><br>City: JAKARTA BARAT<br>Positive: 1,783<br>Deaths: 29","<b>BALE KAMBANG<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,049<br>Deaths: 31","<b>BALI MESTER<\/b><br>City: JAKARTA TIMUR<br>Positive: 827<br>Deaths: 13","<b>BAMBU APUS<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,866<br>Deaths: 27","<b>BANGKA<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,828<br>Deaths: 26","<b>BARU<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,541<br>Deaths: 37","<b>BATU AMPAR<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,608<br>Deaths: 68","<b>BENDUNGAN HILIR<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,012<br>Deaths: 38","<b>BIDARA CINA<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,900<br>Deaths: 52","<b>BINTARO<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,656<br>Deaths: 72","<b>BUKIT DURI<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,287<br>Deaths: 28","<b>BUNGUR<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,396<br>Deaths: 25","<b>CAKUNG BARAT<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,033<br>Deaths: 25","<b>CAKUNG TIMUR<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,765<br>Deaths: 48","<b>CAWANG<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,079<br>Deaths: 39","<b>CEGER<\/b><br>City: JAKARTA TIMUR<br>Positive: 1,965<br>Deaths: 27","<b>CEMPAKA BARU<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,912<br>Deaths: 56","<b>CEMPAKA PUTIH BARAT<\/b><br>City: JAKARTA PUSAT<br>Positive: 3,924<br>Deaths: 67","<b>CEMPAKA PUTIH TIMUR<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,949<br>Deaths: 47","<b>CENGKARENG BARAT<\/b><br>City: JAKARTA BARAT<br>Positive: 5,338<br>Deaths: 93","<b>CENGKARENG TIMUR<\/b><br>City: JAKARTA BARAT<br>Positive: 5,756<br>Deaths: 98","<b>CIBUBUR<\/b><br>City: JAKARTA TIMUR<br>Positive: 5,574<br>Deaths: 65","<b>CIDENG<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,691<br>Deaths: 26","<b>CIGANJUR<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,756<br>Deaths: 49","<b>CIJANTUNG<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,745<br>Deaths: 76","<b>CIKINI<\/b><br>City: JAKARTA PUSAT<br>Positive: 688<br>Deaths: 13","<b>CIKOKO<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,089<br>Deaths: 13","<b>CILANDAK BARAT<\/b><br>City: JAKARTA SELATAN<br>Positive: 5,077<br>Deaths: 63","<b>CILANDAK TIMUR<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,729<br>Deaths: 29","<b>CILANGKAP<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,151<br>Deaths: 23","<b>CILILITAN<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,339<br>Deaths: 64","<b>CILINCING<\/b><br>City: JAKARTA UTARA<br>Positive: 2,444<br>Deaths: 52","<b>CIPAYUNG<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,293<br>Deaths: 36","<b>CIPEDAK<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,118<br>Deaths: 42","<b>CIPETE SELATAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,247<br>Deaths: 41","<b>CIPETE UTARA<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,679<br>Deaths: 43","<b>CIPINANG<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,440<br>Deaths: 69","<b>CIPINANG BESAR SELATAN<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,461<br>Deaths: 42","<b>CIPINANG BESAR UTARA<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,650<br>Deaths: 55","<b>CIPINANG CEMPEDAK<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,496<br>Deaths: 48","<b>CIPINANG MELAYU<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,220<br>Deaths: 59","<b>CIPINANG MUARA<\/b><br>City: JAKARTA TIMUR<br>Positive: 4,606<br>Deaths: 98","<b>CIPULIR<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,613<br>Deaths: 50","<b>CIRACAS<\/b><br>City: JAKARTA TIMUR<br>Positive: 5,447<br>Deaths: 96","<b>DUKUH<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,002<br>Deaths: 34","<b>DUREN SAWIT<\/b><br>City: JAKARTA TIMUR<br>Positive: 5,173<br>Deaths: 98","<b>DUREN TIGA<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,352<br>Deaths: 34","<b>DURI KEPA<\/b><br>City: JAKARTA BARAT<br>Positive: 4,039<br>Deaths: 61","<b>DURI KOSAMBI<\/b><br>City: JAKARTA BARAT<br>Positive: 4,595<br>Deaths: 69","<b>DURI PULO<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,421<br>Deaths: 25","<b>DURI SELATAN<\/b><br>City: JAKARTA BARAT<br>Positive: 844<br>Deaths: 17","<b>DURI UTARA<\/b><br>City: JAKARTA BARAT<br>Positive: 1,237<br>Deaths: 22","<b>GALUR<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,067<br>Deaths: 17","<b>GAMBIR<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,176<br>Deaths: 13","<b>GANDARIA SELATAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,904<br>Deaths: 23","<b>GANDARIA UTARA<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,210<br>Deaths: 48","<b>GEDONG<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,161<br>Deaths: 60","<b>GELORA<\/b><br>City: JAKARTA PUSAT<br>Positive: 498<br>Deaths: 7","<b>GLODOK<\/b><br>City: JAKARTA BARAT<br>Positive: 774<br>Deaths: 13","<b>GONDANGDIA<\/b><br>City: JAKARTA PUSAT<br>Positive: 641<br>Deaths: 6","<b>GROGOL<\/b><br>City: JAKARTA BARAT<br>Positive: 2,257<br>Deaths: 39","<b>GROGOL SELATAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,866<br>Deaths: 39","<b>GROGOL UTARA<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,900<br>Deaths: 53","<b>GUNTUR<\/b><br>City: JAKARTA SELATAN<br>Positive: 439<br>Deaths: 7","<b>GUNUNG<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,269<br>Deaths: 20","<b>GUNUNG SAHARI SELATAN<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,884<br>Deaths: 31","<b>GUNUNG SAHARI UTARA<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,660<br>Deaths: 34","<b>HALIM PERDANA KUSUMAH<\/b><br>City: JAKARTA TIMUR<br>Positive: 4,036<br>Deaths: 47","<b>HARAPAN MULIA<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,899<br>Deaths: 34","<b>JAGAKARSA<\/b><br>City: JAKARTA SELATAN<br>Positive: 6,196<br>Deaths: 89","<b>JATI<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,773<br>Deaths: 44","<b>JATI PADANG<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,227<br>Deaths: 56","<b>JATI PULO<\/b><br>City: JAKARTA BARAT<br>Positive: 1,700<br>Deaths: 44","<b>JATINEGARA<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,982<br>Deaths: 64","<b>JATINEGARA KAUM<\/b><br>City: JAKARTA TIMUR<br>Positive: 1,607<br>Deaths: 33","<b>JELAMBAR<\/b><br>City: JAKARTA BARAT<br>Positive: 3,284<br>Deaths: 47","<b>JELAMBAR BARU<\/b><br>City: JAKARTA BARAT<br>Positive: 3,126<br>Deaths: 35","<b>JEMBATAN BESI<\/b><br>City: JAKARTA BARAT<br>Positive: 1,507<br>Deaths: 23","<b>JEMBATAN LIMA<\/b><br>City: JAKARTA BARAT<br>Positive: 1,327<br>Deaths: 18","<b>JOGLO<\/b><br>City: JAKARTA BARAT<br>Positive: 3,410<br>Deaths: 34","<b>JOHAR BARU<\/b><br>City: JAKARTA PUSAT<br>Positive: 3,853<br>Deaths: 62","<b>KALI ANYAR<\/b><br>City: JAKARTA BARAT<br>Positive: 1,139<br>Deaths: 21","<b>KALI BARU<\/b><br>City: JAKARTA UTARA<br>Positive: 1,629<br>Deaths: 44","<b>KALIBATA<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,851<br>Deaths: 68","<b>KALIDERES<\/b><br>City: JAKARTA BARAT<br>Positive: 4,546<br>Deaths: 75","<b>KALISARI<\/b><br>City: JAKARTA TIMUR<br>Positive: 4,175<br>Deaths: 76","<b>KAMAL<\/b><br>City: JAKARTA BARAT<br>Positive: 1,540<br>Deaths: 36","<b>KAMAL MUARA<\/b><br>City: JAKARTA UTARA<br>Positive: 907<br>Deaths: 8","<b>KAMPUNG BALI<\/b><br>City: JAKARTA PUSAT<br>Positive: 703<br>Deaths: 16","<b>KAMPUNG MELAYU<\/b><br>City: JAKARTA TIMUR<br>Positive: 1,442<br>Deaths: 17","<b>KAMPUNG RAWA<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,439<br>Deaths: 28","<b>KAMPUNG TENGAH<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,289<br>Deaths: 69","<b>KAPUK<\/b><br>City: JAKARTA BARAT<br>Positive: 6,231<br>Deaths: 158","<b>KAPUK MUARA<\/b><br>City: JAKARTA UTARA<br>Positive: 2,635<br>Deaths: 25","<b>KARANG ANYAR<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,805<br>Deaths: 32","<b>KARET<\/b><br>City: JAKARTA SELATAN<br>Positive: 987<br>Deaths: 9","<b>KARET KUNINGAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,815<br>Deaths: 39","<b>KARET SEMANGGI<\/b><br>City: JAKARTA SELATAN<br>Positive: 388<br>Deaths: 5","<b>KARET TENGSIN<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,610<br>Deaths: 21","<b>KARTINI<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,842<br>Deaths: 33","<b>KAYU MANIS<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,277<br>Deaths: 35","<b>KAYU PUTIH<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,822<br>Deaths: 58","<b>KEAGUNGAN<\/b><br>City: JAKARTA BARAT<br>Positive: 1,178<br>Deaths: 11","<b>KEBAGUSAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,306<br>Deaths: 58","<b>KEBAYORAN LAMA SELATAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,325<br>Deaths: 60","<b>KEBAYORAN LAMA UTARA<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,868<br>Deaths: 51","<b>KEBON BARU<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,549<br>Deaths: 51","<b>KEBON BAWANG<\/b><br>City: JAKARTA UTARA<br>Positive: 3,779<br>Deaths: 54","<b>KEBON JERUK<\/b><br>City: JAKARTA BARAT<br>Positive: 4,908<br>Deaths: 75","<b>KEBON KACANG<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,610<br>Deaths: 37","<b>KEBON KELAPA<\/b><br>City: JAKARTA PUSAT<br>Positive: 934<br>Deaths: 9","<b>KEBON KOSONG<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,873<br>Deaths: 43","<b>KEBON MANGGIS<\/b><br>City: JAKARTA TIMUR<br>Positive: 1,603<br>Deaths: 26","<b>KEBON MELATI<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,897<br>Deaths: 38","<b>KEBON PALA<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,817<br>Deaths: 71","<b>KEBON SIRIH<\/b><br>City: JAKARTA PUSAT<br>Positive: 954<br>Deaths: 15","<b>KEDAUNG KALI ANGKE<\/b><br>City: JAKARTA BARAT<br>Positive: 2,094<br>Deaths: 34","<b>KEDOYA SELATAN<\/b><br>City: JAKARTA BARAT<br>Positive: 2,365<br>Deaths: 43","<b>KEDOYA UTARA<\/b><br>City: JAKARTA BARAT<br>Positive: 3,016<br>Deaths: 48","<b>KELAPA DUA<\/b><br>City: JAKARTA BARAT<br>Positive: 2,114<br>Deaths: 31","<b>KELAPA DUA WETAN<\/b><br>City: JAKARTA TIMUR<br>Positive: 4,201<br>Deaths: 58","<b>KELAPA GADING BARAT<\/b><br>City: JAKARTA UTARA<br>Positive: 3,918<br>Deaths: 54","<b>KELAPA GADING TIMUR<\/b><br>City: JAKARTA UTARA<br>Positive: 3,910<br>Deaths: 56","<b>KEMANGGISAN<\/b><br>City: JAKARTA BARAT<br>Positive: 2,942<br>Deaths: 53","<b>KEMAYORAN<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,383<br>Deaths: 39","<b>KEMBANGAN SELATAN<\/b><br>City: JAKARTA BARAT<br>Positive: 2,206<br>Deaths: 22","<b>KEMBANGAN UTARA<\/b><br>City: JAKARTA BARAT<br>Positive: 3,458<br>Deaths: 58","<b>KENARI<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,125<br>Deaths: 18","<b>KERENDANG<\/b><br>City: JAKARTA BARAT<br>Positive: 1,138<br>Deaths: 16","<b>KLENDER<\/b><br>City: JAKARTA TIMUR<br>Positive: 4,299<br>Deaths: 94","<b>KOJA<\/b><br>City: JAKARTA UTARA<br>Positive: 1,962<br>Deaths: 35","<b>KOTA BAMBU SELATAN<\/b><br>City: JAKARTA BARAT<br>Positive: 1,691<br>Deaths: 33","<b>KOTA BAMBU UTARA<\/b><br>City: JAKARTA BARAT<br>Positive: 1,580<br>Deaths: 31","<b>KRAMAT<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,942<br>Deaths: 41","<b>KRAMAT JATI<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,297<br>Deaths: 63","<b>KRAMAT PELA<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,023<br>Deaths: 10","<b>KRUKUT<\/b><br>City: JAKARTA BARAT<br>Positive: 1,209<br>Deaths: 13","<b>KUNINGAN BARAT<\/b><br>City: JAKARTA SELATAN<br>Positive: 949<br>Deaths: 7","<b>KUNINGAN TIMUR<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,406<br>Deaths: 8","<b>KWITANG<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,182<br>Deaths: 19","<b>LAGOA<\/b><br>City: JAKARTA UTARA<br>Positive: 3,540<br>Deaths: 77","<b>LEBAK BULUS<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,715<br>Deaths: 50","<b>LENTENG AGUNG<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,954<br>Deaths: 59","<b>LUBANG BUAYA<\/b><br>City: JAKARTA TIMUR<br>Positive: 5,455<br>Deaths: 65","<b>MAKASAR<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,438<br>Deaths: 49","<b>MALAKA JAYA<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,917<br>Deaths: 49","<b>MALAKA SARI<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,738<br>Deaths: 61","<b>MAMPANG PRAPATAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,068<br>Deaths: 33","<b>MANGGA BESAR<\/b><br>City: JAKARTA BARAT<br>Positive: 811<br>Deaths: 14","<b>MANGGA DUA SELATAN<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,839<br>Deaths: 32","<b>MANGGARAI<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,736<br>Deaths: 23","<b>MANGGARAI SELATAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,893<br>Deaths: 36","<b>MAPHAR<\/b><br>City: JAKARTA BARAT<br>Positive: 1,236<br>Deaths: 24","<b>MARUNDA<\/b><br>City: JAKARTA UTARA<br>Positive: 1,127<br>Deaths: 19","<b>MELAWAI<\/b><br>City: JAKARTA SELATAN<br>Positive: 435<br>Deaths: 3","<b>MENTENG<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,003<br>Deaths: 33","<b>MENTENG ATAS<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,483<br>Deaths: 47","<b>MENTENG DALAM<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,941<br>Deaths: 46","<b>MERUYA SELATAN<\/b><br>City: JAKARTA BARAT<br>Positive: 2,996<br>Deaths: 38","<b>MERUYA UTARA<\/b><br>City: JAKARTA BARAT<br>Positive: 3,646<br>Deaths: 47","<b>MUNJUL<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,648<br>Deaths: 30","<b>PADEMANGAN BARAT<\/b><br>City: JAKARTA UTARA<br>Positive: 4,663<br>Deaths: 69","<b>PADEMANGAN TIMUR<\/b><br>City: JAKARTA UTARA<br>Positive: 5,168<br>Deaths: 51","<b>PAL MERIAM<\/b><br>City: JAKARTA TIMUR<br>Positive: 1,587<br>Deaths: 24","<b>PALMERAH<\/b><br>City: JAKARTA BARAT<br>Positive: 5,322<br>Deaths: 104","<b>PANCORAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,965<br>Deaths: 28","<b>PAPANGGO<\/b><br>City: JAKARTA UTARA<br>Positive: 2,154<br>Deaths: 32","<b>PASAR BARU<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,484<br>Deaths: 20","<b>PASAR MANGGIS<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,905<br>Deaths: 48","<b>PASAR MINGGU<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,743<br>Deaths: 46","<b>PASEBAN<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,461<br>Deaths: 36","<b>PEGADUNGAN<\/b><br>City: JAKARTA BARAT<br>Positive: 4,218<br>Deaths: 50","<b>PEGANGSAAN<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,901<br>Deaths: 46","<b>PEGANGSAAN DUA<\/b><br>City: JAKARTA UTARA<br>Positive: 4,221<br>Deaths: 63","<b>PEJAGALAN<\/b><br>City: JAKARTA UTARA<br>Positive: 5,806<br>Deaths: 67","<b>PEJATEN BARAT<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,260<br>Deaths: 50","<b>PEJATEN TIMUR<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,599<br>Deaths: 83","<b>PEKAYON<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,136<br>Deaths: 45","<b>PEKOJAN<\/b><br>City: JAKARTA BARAT<br>Positive: 1,746<br>Deaths: 26","<b>PELA MAMPANG<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,774<br>Deaths: 61","<b>PENGADEGAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,105<br>Deaths: 32","<b>PENGGILINGAN<\/b><br>City: JAKARTA TIMUR<br>Positive: 5,326<br>Deaths: 90","<b>PENJARINGAN<\/b><br>City: JAKARTA UTARA<br>Positive: 4,494<br>Deaths: 63","<b>PESANGGRAHAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,273<br>Deaths: 27","<b>PETAMBURAN<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,304<br>Deaths: 47","<b>PETOGOGAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,033<br>Deaths: 13","<b>PETOJO SELATAN<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,587<br>Deaths: 23","<b>PETOJO UTARA<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,392<br>Deaths: 20","<b>PETUKANGAN SELATAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,671<br>Deaths: 31","<b>PETUKANGAN UTARA<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,786<br>Deaths: 42","<b>PINANG RANTI<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,247<br>Deaths: 39","<b>PINANGSIA<\/b><br>City: JAKARTA BARAT<br>Positive: 768<br>Deaths: 9","<b>PISANGAN BARU<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,458<br>Deaths: 41","<b>PISANGAN TIMUR<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,234<br>Deaths: 44","<b>PLUIT<\/b><br>City: JAKARTA UTARA<br>Positive: 3,963<br>Deaths: 43","<b>PONDOK BAMBU<\/b><br>City: JAKARTA TIMUR<br>Positive: 5,203<br>Deaths: 94","<b>PONDOK KELAPA<\/b><br>City: JAKARTA TIMUR<br>Positive: 5,116<br>Deaths: 83","<b>PONDOK KOPI<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,420<br>Deaths: 57","<b>PONDOK LABU<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,598<br>Deaths: 51","<b>PONDOK PINANG<\/b><br>City: JAKARTA SELATAN<br>Positive: 4,547<br>Deaths: 59","<b>PONDOK RANGGON<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,631<br>Deaths: 17","<b>PULAU HARAPAN<\/b><br>City: KAB.ADM.KEP.SERIBU<br>Positive: 72<br>Deaths: 3","<b>PULAU KELAPA<\/b><br>City: KAB.ADM.KEP.SERIBU<br>Positive: 159<br>Deaths: 1","<b>PULAU PANGGANG<\/b><br>City: KAB.ADM.KEP.SERIBU<br>Positive: 355<br>Deaths: 2","<b>PULAU PARI<\/b><br>City: KAB.ADM.KEP.SERIBU<br>Positive: 232<br>Deaths: 0","<b>PULAU TIDUNG<\/b><br>City: KAB.ADM.KEP.SERIBU<br>Positive: 299<br>Deaths: 6","<b>PULAU UNTUNG JAWA<\/b><br>City: KAB.ADM.KEP.SERIBU<br>Positive: 134<br>Deaths: 1","<b>PULO<\/b><br>City: JAKARTA SELATAN<br>Positive: 672<br>Deaths: 10","<b>PULO GADUNG<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,480<br>Deaths: 43","<b>PULO GEBANG<\/b><br>City: JAKARTA TIMUR<br>Positive: 4,873<br>Deaths: 90","<b>RAGUNAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,513<br>Deaths: 53","<b>RAMBUTAN<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,801<br>Deaths: 46","<b>RAWA BADAK SELATAN<\/b><br>City: JAKARTA UTARA<br>Positive: 2,373<br>Deaths: 41","<b>RAWA BADAK UTARA<\/b><br>City: JAKARTA UTARA<br>Positive: 2,156<br>Deaths: 38","<b>RAWA BARAT<\/b><br>City: JAKARTA SELATAN<br>Positive: 567<br>Deaths: 8","<b>RAWA BUAYA<\/b><br>City: JAKARTA BARAT<br>Positive: 3,405<br>Deaths: 60","<b>RAWA BUNGA<\/b><br>City: JAKARTA TIMUR<br>Positive: 1,269<br>Deaths: 14","<b>RAWA JATI<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,356<br>Deaths: 25","<b>RAWA TERATE<\/b><br>City: JAKARTA TIMUR<br>Positive: 978<br>Deaths: 18","<b>RAWAMANGUN<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,472<br>Deaths: 62","<b>RAWASARI<\/b><br>City: JAKARTA PUSAT<br>Positive: 3,125<br>Deaths: 33","<b>ROA MALAKA<\/b><br>City: JAKARTA BARAT<br>Positive: 259<br>Deaths: 5","<b>ROROTAN<\/b><br>City: JAKARTA UTARA<br>Positive: 2,276<br>Deaths: 34","<b>SELONG<\/b><br>City: JAKARTA SELATAN<br>Positive: 379<br>Deaths: 5","<b>SEMANAN<\/b><br>City: JAKARTA BARAT<br>Positive: 2,561<br>Deaths: 47","<b>SEMPER BARAT<\/b><br>City: JAKARTA UTARA<br>Positive: 4,111<br>Deaths: 77","<b>SEMPER TIMUR<\/b><br>City: JAKARTA UTARA<br>Positive: 2,098<br>Deaths: 45","<b>SENAYAN<\/b><br>City: JAKARTA SELATAN<br>Positive: 882<br>Deaths: 2","<b>SENEN<\/b><br>City: JAKARTA PUSAT<br>Positive: 943<br>Deaths: 15","<b>SERDANG<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,730<br>Deaths: 56","<b>SETIA BUDI<\/b><br>City: JAKARTA SELATAN<br>Positive: 618<br>Deaths: 6","<b>SETU<\/b><br>City: JAKARTA TIMUR<br>Positive: 1,879<br>Deaths: 13","<b>SLIPI<\/b><br>City: JAKARTA BARAT<br>Positive: 2,086<br>Deaths: 28","<b>SRENGSENG<\/b><br>City: JAKARTA BARAT<br>Positive: 3,677<br>Deaths: 56","<b>SRENGSENG SAWAH<\/b><br>City: JAKARTA SELATAN<br>Positive: 4,882<br>Deaths: 74","<b>SUKABUMI SELATAN<\/b><br>City: JAKARTA BARAT<br>Positive: 2,082<br>Deaths: 25","<b>SUKABUMI UTARA<\/b><br>City: JAKARTA BARAT<br>Positive: 2,735<br>Deaths: 38","<b>SUKAPURA<\/b><br>City: JAKARTA UTARA<br>Positive: 2,730<br>Deaths: 44","<b>SUMUR BATU<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,260<br>Deaths: 40","<b>SUNGAI BAMBU<\/b><br>City: JAKARTA UTARA<br>Positive: 2,089<br>Deaths: 21","<b>SUNTER AGUNG<\/b><br>City: JAKARTA UTARA<br>Positive: 5,516<br>Deaths: 102","<b>SUNTER JAYA<\/b><br>City: JAKARTA UTARA<br>Positive: 5,848<br>Deaths: 88","<b>SUSUKAN<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,080<br>Deaths: 60","<b>TAMAN SARI<\/b><br>City: JAKARTA BARAT<br>Positive: 1,351<br>Deaths: 16","<b>TAMBORA<\/b><br>City: JAKARTA BARAT<br>Positive: 775<br>Deaths: 21","<b>TANAH SEREAL<\/b><br>City: JAKARTA BARAT<br>Positive: 1,884<br>Deaths: 19","<b>TANAH TINGGI<\/b><br>City: JAKARTA PUSAT<br>Positive: 2,024<br>Deaths: 41","<b>TANGKI<\/b><br>City: JAKARTA BARAT<br>Positive: 1,109<br>Deaths: 18","<b>TANJUNG BARAT<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,045<br>Deaths: 53","<b>TANJUNG DUREN SELATAN<\/b><br>City: JAKARTA BARAT<br>Positive: 2,716<br>Deaths: 40","<b>TANJUNG DUREN UTARA<\/b><br>City: JAKARTA BARAT<br>Positive: 1,946<br>Deaths: 30","<b>TANJUNG PRIOK<\/b><br>City: JAKARTA UTARA<br>Positive: 2,388<br>Deaths: 47","<b>TEBET BARAT<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,834<br>Deaths: 34","<b>TEBET TIMUR<\/b><br>City: JAKARTA SELATAN<br>Positive: 1,978<br>Deaths: 30","<b>TEGAL ALUR<\/b><br>City: JAKARTA BARAT<br>Positive: 4,319<br>Deaths: 69","<b>TEGAL PARANG<\/b><br>City: JAKARTA SELATAN<br>Positive: 2,362<br>Deaths: 40","<b>TOMANG<\/b><br>City: JAKARTA BARAT<br>Positive: 2,416<br>Deaths: 34","<b>TUGU SELATAN<\/b><br>City: JAKARTA UTARA<br>Positive: 2,252<br>Deaths: 36","<b>TUGU UTARA<\/b><br>City: JAKARTA UTARA<br>Positive: 4,225<br>Deaths: 83","<b>UJUNG MENTENG<\/b><br>City: JAKARTA TIMUR<br>Positive: 1,714<br>Deaths: 25","<b>ULUJAMI<\/b><br>City: JAKARTA SELATAN<br>Positive: 3,037<br>Deaths: 47","<b>UTAN KAYU SELATAN<\/b><br>City: JAKARTA TIMUR<br>Positive: 3,433<br>Deaths: 62","<b>UTAN KAYU UTARA<\/b><br>City: JAKARTA TIMUR<br>Positive: 2,215<br>Deaths: 55","<b>UTAN PANJANG<\/b><br>City: JAKARTA PUSAT<br>Positive: 1,923<br>Deaths: 34","<b>WARAKAS<\/b><br>City: JAKARTA UTARA<br>Positive: 2,887<br>Deaths: 41","<b>WIJAYA KUSUMA<\/b><br>City: JAKARTA BARAT<br>Positive: 2,769<br>Deaths: 44"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"#2c3e50","size":6,"opacity":0.59999999999999998,"line":{"color":"white","width":1}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What I Learned
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The interactive layer is the final piece of the analytical story. Every outlier flagged by <code>ggscatterstats</code> and inflated Cook’s distance in <code>check_model()</code> can now be named. This is the bridge between statistical output and operational action: once you can hover over an extreme point and see “Penjaringan, Jakarta Utara, 3,200 positive, 98 deaths”, the abstract pattern becomes a real place that needs attention. Wrapping any <code>ggplot2</code> output in <code>ggplotly()</code> is the quick route to the same result for <code>ggstatsplot</code> charts.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="summary-the-story-these-techniques-tell-together" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="summary-the-story-these-techniques-tell-together"><span class="header-section-number">1.12</span> Summary: The Story These Techniques Tell Together</h2>
+<p>Starting from raw sub-district counts, the eight techniques progressively answered one interconnected question about Jakarta’s COVID-19 burden:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small">
+<caption>Visual Statistical Analysis — Techniques and Insights Summary</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(44, 62, 80, 255) !important;">Step</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold; color: white !important; background-color: rgba(44, 62, 80, 255) !important;">Technique</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold; color: white !important; background-color: rgba(44, 62, 80, 255) !important;">Question answered</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold; color: white !important; background-color: rgba(44, 62, 80, 255) !important;">Key insight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; background-color: rgba(254, 249, 231, 255) !important;">1</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">One-sample test (gghistostats)</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Is Jakarta's mean CFR genuinely above a 2% global benchmark?</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">BF₁₀ &gt; 10 → strong evidence that mean CFR exceeds 2%; localised benchmarks needed</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; background-color: rgba(254, 249, 231, 255) !important;">2</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Two-sample test (ggbetweenstats, np)</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Do Selatan and Utara have different CFR distributions?</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">CFR in Selatan and Utara are statistically distinct (Cliff's delta ≠ 0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; background-color: rgba(254, 249, 231, 255) !important;">3</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">One-way ANOVA (ggbetweenstats, p)</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Which mainland cities differ, and by how much?</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Jakarta Timur has highest, Pusat lowest; FDR-corrected pairwise gaps confirmed</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; background-color: rgba(254, 249, 231, 255) !important;">4</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Correlation test (ggscatterstats)</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">How strong is the positive–death link, and are outliers driving it?</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Strong correlation (r ≈ 0.85) but skew and outliers undermine OLS fit</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; background-color: rgba(254, 249, 231, 255) !important;">5</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Association test (ggbarstats)</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Is the distribution of CFR severity categories the same across cities?</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Kepulauan Seribu has disproportionately more 'High' CFR sub-districts (Cramér's V)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; background-color: rgba(254, 249, 231, 255) !important;">6</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Model diagnostics (performance)</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Is OLS the right model? What assumptions does it violate?</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Residuals are non-normal, heteroscedastic; Cook's spikes → GLM recommended</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; background-color: rgba(254, 249, 231, 255) !important;">7</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Model parameters (parameters + see)</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Which predictors matter, and where does collinearity show up?</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Death dominates; recovered collinear with positive; city CIs are wide</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; background-color: rgba(254, 249, 231, 255) !important;">8</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Interactive scatterplot (plotly)</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Which specific sub-districts are the extreme hotspots?</td>
+<td style="text-align: left; background-color: rgba(254, 249, 231, 255) !important;">Named hotspots identified; extreme Cook's points become actionable locations</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The Complete Story
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>EDA revealed spread and skew → the one-sample test confirmed Jakarta’s CFR is above global norms → the two-sample test showed city-level differences are real → ANOVA pinpointed which cities are the outliers → the correlation test proved cases and deaths move together but with hotspot distortion → the association test showed Kepulauan Seribu as a structural anomaly → model diagnostics showed OLS is insufficient for count data → parameter plots revealed which predictors matter despite collinearity → the interactive plot named the hotspots requiring urgent intervention. Each technique answered one question, and together they build a complete public health picture.</p>
+</div>
+</div>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
