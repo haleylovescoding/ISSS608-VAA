@@ -3,7 +3,7 @@ project:
   output-dir: _site
 
 website:
-  title: "ISSS608"
+  title: "My note"
   navbar:
     background: "#3b4d5c"
     foreground: "#ffffff"
@@ -24,6 +24,8 @@ website:
             href: In_class_Ex/In_class_Ex01/In_class_ex01.html
           - text: "In-class Excercises-2"
             href: In_class_Ex/In_class_Ex02/In_class_ex02.html
+          - text: "In-class Excercises-3"
+            href: In_class_Ex/In_class_Ex03/In_class_ex03.html
     right:
       - text: "About"
         href: https://haleyhome.vercel.app

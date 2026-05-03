@@ -1,0 +1,290 @@
+---
+title: "In-class Exercise 3"
+subtitle: "Visual Analytics with Tableau — Superstore & Singapore Population"
+author: "Thi Thanh Van Tran"
+date: "April 25, 2026"
+date-modified: "last-modified"
+engine: knitr
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-float: true
+    number-sections: true
+    number-depth: 3
+    code-fold: false
+    code-tools: false
+    theme: flatly
+    highlight-style: github
+    fig-align: center
+---
+
+```{=html}
+<style>
+  iframe   { max-width: 100% !important; }
+  .callout { margin-top: 0.75rem; }
+  h2       { margin-top: 2rem; }
+</style>
+```
+
+::: callout-note
+## Overview
+
+This exercise documents two Tableau dashboards built during class, covering:
+
+- **Part 1** — Superstore dataset: quadrant analysis, Pareto charts, and annual trend analysis.
+- **Part 2** — Singapore population dataset (*respopagesextod2025*): population pyramids and trellis small multiples by Planning Area.
+
+Each section embeds the live Tableau dashboard, explains how the data was prepared and published, and summarises the key analytical insights derived from class.
+:::
+
+---
+
+# Part 1 — Superstore Dataset
+
+## Tableau Story
+
+```{=html}
+<div style="width:100%; height:620px; margin-bottom:1.5rem;">
+  <iframe
+    src="https://public.tableau.com/views/in-class3/Story1?:showVizHome=no&:embed=true&:toolbar=yes"
+    style="width:100%; height:100%; border:none;"
+    loading="lazy"
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+---
+
+## Data Preparation & Publishing to Tableau Public
+
+The Superstore dataset is an Excel workbook (`Superstore.xls`) with three sheets: **Orders**, **Returns**, and **People**. The Orders sheet is the primary data source containing all transactional records.
+
+**Step-by-step workflow in class:**
+
+1. **Connect the data** — Open Tableau Desktop → *Connect → Microsoft Excel* → select `Superstore.xls`. Tableau auto-detects field types: dates, text dimensions, and numeric measures are ready to use without manual transformation.
+
+2. **Create calculated fields** — The following computed measures were added in the formula editor to power the Pareto and quadrant analyses:
+   - `Profit Ratio` → `SUM([Profit]) / SUM([Sales])`
+   - `Running Sum of Profit` → `RUNNING_SUM(SUM([Profit]))`
+   - `Cumulative Profit %` → `RUNNING_SUM(SUM([Profit])) / TOTAL(SUM([Profit]))`
+   - `Running Count of Customers` → `RUNNING_COUNT(COUNTD([Customer ID]))`
+
+3. **Build each worksheet** — One worksheet per Story Point was built, then stitched together into a Tableau Story (works like a presentation — each Story Point = one slide).
+
+4. **Publish to Tableau Public** — *Server → Tableau Public → Save to Tableau Public As…* uploads the workbook and generates a shareable URL and embed `<iframe>` code instantly.
+
+::: callout-tip
+**Embed in Quarto:** From any published Tableau Public viz, click the **Share** icon in the bottom toolbar → copy the `<iframe>` embed code → paste it inside a ` ```{=html} ` block in the Quarto `.qmd` file.
+:::
+
+---
+
+## What Was Learned — Story Point by Story Point
+
+### Story Point 1: Sales vs Profit Quadrant by State
+
+Every US state is placed on a scatter plot using **percentile of total sales** on the X-axis and **percentile of total profit** on the Y-axis. Two reference lines at the 50th percentile divide the canvas into four labelled quadrants. Bubble size encodes total sales; colour encodes actual profit (orange = loss, blue = gain).
+
+::: callout-note
+**Technique: Quadrant Analysis using Percentile Ranks**
+
+Using percentile ranks instead of raw dollar values is the critical design decision. Raw values would collapse most states into the lower-left corner because a handful of large states (California, New York, Texas) dominate the scale. Percentile ranks spread all 49 points evenly across the full canvas, making every state visible and comparable.
+
+The four quadrants map directly to business decisions:
+
+| Quadrant | Label | Interpretation | Recommended Action |
+|---|---|---|---|
+| Top-right | ⭐ Stars | High Sales & High Profit | Protect, invest, replicate |
+| Bottom-right | ⚠️ Value Destroyers | High Sales but Low Profit | Diagnose discounting / product mix |
+| Top-left | 🔷 Hidden Gems | Low Sales but profitable | Expand marketing presence |
+| Bottom-left | 💤 Laggards | Low Sales & Low Profit | Deprioritise resources |
+:::
+
+**Key Insight:** States in the bottom-right quadrant are the most strategically dangerous — they consume significant resources (sales effort, logistics, inventory) without delivering proportionate profit. Texas and Pennsylvania, for example, generate high revenue but poor returns. The diagnosis in most cases traces back to aggressive discounting in those markets, which the quadrant view alone doesn't show but prompts the analyst to investigate next.
+
+---
+
+### Story Point 2: Pareto Chart by Customer ID
+
+Every customer is ranked from highest to lowest total profit and plotted on a cumulative curve. The Y-axis shows the running percentage of total profit accumulated; the X-axis shows the percentage of the customer base reached so far. A reference line at 80% reveals the Pareto threshold.
+
+::: callout-note
+**Technique: Pareto / 80-20 Cumulative Profit Curve**
+
+The 80/20 rule (Pareto Principle) states that roughly 80% of outcomes come from 20% of inputs. In Tableau, the cumulative curve is built using:
+
+1. `RUNNING_SUM(SUM([Profit]))` — the running total of profit as customers are added in descending order.
+2. Dividing by `TOTAL(SUM([Profit]))` — converts to a cumulative percentage.
+3. A reference line at Y = 80% — shows exactly how many customers (as % of the base) are needed to reach 80% of total profit.
+
+The curve shape tells the story: a **steep early rise** means profit is highly concentrated in a small customer elite. A **gradual, uniform rise** means profit is spread evenly and no customer is disproportionately important.
+:::
+
+**Key Insight:** The curve rises very steeply in the early section — meaning a small minority of customers, roughly the top 20%, generate approximately 80% of cumulative profit. This finding directly informs CRM strategy: loyalty programmes, dedicated account managers, and retention initiatives should be directed intensively at that top-tier group. Indiscriminate marketing to the full customer base wastes budget on the long tail that contributes little to profit.
+
+---
+
+### Story Point 3: Annual Sales and Profit
+
+Total annual sales are displayed as a bar chart and total annual profit is overlaid as a line with markers — a dual-axis view that allows simultaneous reading of both revenue volume and profit quality.
+
+::: callout-note
+**Technique: Dual-Axis Chart (Bar + Line)**
+
+In Tableau, dual-axis charts are built by:
+1. Placing two measures on the Rows shelf.
+2. Right-clicking the second pill → *Dual Axis* → *Synchronise Axis* (if scales are similar) or leaving them independent (if one measure is much larger than the other).
+3. Assigning different mark types to each axis — Bar for Sales (volume), Line+Circle for Profit (quality).
+
+The visual separation of sales (bars = magnitude) from profit (line = trend direction) in a single view prevents the common mistake of conflating revenue growth with profit health.
+:::
+
+**Key Insight:** Sales revenue grows consistently year-on-year, but profit growth is uneven. In some years profit climbs proportionally with sales; in others it stagnates or dips while sales continue to grow — a warning sign that discounting pressure or product mix deterioration is eroding margins. Tracking the profit margin percentage alongside absolute profit prevents leadership from celebrating a sales record that masks underlying value destruction.
+
+---
+
+### Story Point 4: Pareto Chart by Sub-Category
+
+The Pareto logic is applied to sub-categories instead of customers. A bar chart sorted in descending profit order is combined with a cumulative percentage line on a secondary Y-axis, and a horizontal reference line marks the 80% profit threshold.
+
+::: callout-note
+**Technique: Pareto Bar Chart with Dual Y-axis and Reference Line**
+
+This is the classic Pareto chart format:
+
+- **Left Y-axis** → absolute total profit per sub-category (descending bars).
+- **Right Y-axis** → cumulative % of total profit (line, 0–100%).
+- **80% dashed reference line** → the "vital few / trivial many" boundary.
+
+Sub-categories to the **left** of the 80% line are the vital few that must be protected and grown. Sub-categories to the **right** are candidates for repricing, discounting reform, or discontinuation.
+
+Critically, loss-making sub-categories (negative bars, shown in red) drag the cumulative line *downward* — their removal would actually increase the 80% threshold value, improving overall profitability even at the cost of some revenue.
+:::
+
+**Key Insight:** Copiers, Phones, and Accessories are the profit powerhouses — a small set that drives the vast majority of positive profit. Tables and Bookcases, on the other hand, generate net losses. The Pareto chart makes this concentration visually unambiguous in a way that a plain table of numbers does not. The recommended action is clear: double down on the vital few, and implement hard discount caps or price corrections for the loss-makers.
+
+---
+
+# Part 2 — Singapore Population Dataset
+
+## Tableau Dashboard
+
+```{=html}
+<div style="width:100%; height:620px; margin-bottom:1.5rem;">
+  <iframe
+    src="https://public.tableau.com/views/in-class3b/Sheet2?:showVizHome=no&:embed=true&:toolbar=yes"
+    style="width:100%; height:100%; border:none;"
+    loading="lazy"
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+---
+
+## Data Preparation & Publishing to Tableau Public
+
+The *respopagesextod2025* dataset is published by the **Singapore Department of Statistics (SingStat)** and records Singapore's resident population by Planning Area, Subzone, five-year Age Group, Sex, and Type of Dwelling, as at June 2025.
+
+**Step-by-step workflow:**
+
+1. **Download the dataset** — Visit [www.singstat.gov.sg](https://www.singstat.gov.sg) → *Find Data → Population → Geographic Distribution → Latest Data* → download `respopagesextod2025.csv`. The file has six columns: `PA`, `SZ`, `AG`, `Sex`, `TOD`, `Pop`.
+
+2. **Inspect and understand the structure** — Each row represents one combination of (Planning Area × Subzone × Age Group × Sex × Type of Dwelling) with its population count. Many rows have `Pop = 0` (no residents for that combination). The `AG` column uses coded labels such as `0_to_4`, `5_to_9`, … `85_and_over`.
+
+3. **Connect in Tableau Desktop** — *Connect → Text File* → select the CSV. Ensure `Pop` is treated as a **Measure** (green pill) and `PA`, `SZ`, `AG`, `Sex`, `TOD` are all **Dimensions** (blue pills). Filter `Pop > 0` using a data source filter to exclude empty rows before any chart is built.
+
+4. **Create the pyramid calculated field** — A new field is needed to mirror male values to the left side of the chart:
+   - Field name: `Population (Pyramid)`
+   - Formula: `IF [Sex] = "Males" THEN -[Pop] ELSE [Pop] END`
+
+5. **Sort the Age Group axis correctly** — By default, Tableau sorts `AG` alphabetically, which produces a nonsensical order (`0_to_4` → `10_to_14` → `15_to_19`…). Right-click the `AG` pill → *Sort* → *Manual* → drag the values into the correct ascending age order from 0–4 at the bottom to 85+ at the top.
+
+6. **Build the trellis** — With `AG` on Rows and `Population (Pyramid)` on Columns, drag `PA` onto the **Columns** shelf above the measure. Tableau automatically repeats the pyramid for every Planning Area, creating the small-multiples layout.
+
+7. **Publish to Tableau Public** — *Server → Tableau Public → Save to Tableau Public As…* and copy the embed code.
+
+::: callout-tip
+**Sorting tip:** The 5-year age group codes in SingStat files sort alphabetically in a wrong order. Always set a **manual sort** in Tableau to arrange them correctly before adding any other dimensions. Getting the age axis right is the most important step for a readable pyramid.
+:::
+
+---
+
+## What Was Learned — Population Analysis Techniques
+
+### The Population Pyramid
+
+The population pyramid is the foundational demographic chart, encoding three variables simultaneously: **age group** (Y-axis, youngest at bottom), **sex** (left = males, right = females), and **population count** (bar length, mirrored horizontally). The resulting silhouette immediately communicates the overall age structure.
+
+::: callout-note
+**Technique: Mirrored Horizontal Bar Chart**
+
+Three classic shapes each carry a distinct demographic message:
+
+| Shape | Name | What it tells us |
+|---|---|---|
+| Wide base tapering to top | Expansive | High birth rate — young, fast-growing population |
+| Narrow base, wide middle | Constrictive | Low birth rate — ageing population |
+| Nearly uniform width | Stationary | Low growth — stable, replacement-level fertility |
+
+Singapore's national pyramid is clearly **constrictive**: the 0–14 base is markedly narrower than the 25–54 working-age bulge. This is the demographic signature of low fertility combined with high life expectancy — a trend that is accelerating as the large Baby Boomer cohort enters their 70s and 80s.
+:::
+
+**Key Insight:** The growing 65+ elderly cohort will place increasing pressure on healthcare infrastructure, CPF systems, and social services over the next two decades. The shrinking youth base means fewer workers entering the labour force to support that growing elderly population. Spatial awareness of *where* the elderly are concentrated is essential for targeted infrastructure investment — which is precisely why the trellis view matters.
+
+---
+
+### Trellis Population Pyramids by Planning Area
+
+The headline technique from this class session is the **trellis (small multiples) layout** — one mini population pyramid per Planning Area, all shown side by side on a single canvas for direct visual comparison.
+
+::: callout-note
+**Technique: Small Multiples / Trellis Chart**
+
+Small multiples follow Edward Tufte's foundational principle: show the same chart type repeated across different categories so that comparison is immediate and cognitive load is minimised. A viewer does not need to switch between tabs or remember what a previous chart looked like — all information is spatially co-located.
+
+Reading the trellis across Singapore's planning areas reveals three recurring demographic archetypes:
+
+| Archetype | Pyramid Shape | Characteristics | Example Areas |
+|---|---|---|---|
+| **Young Town** | Wide base | Many children, few elderly — families moved in recently | Punggol, Sengkang |
+| **Mature Estate** | Barrel-shaped | Even age distribution across most groups | Tampines, Jurong West |
+| **Ageing Estate** | Top-heavy | Narrow base, large 55–75 band — residents ageing in place | Bukit Timah, Marine Parade |
+
+The trellis makes these archetypes visually obvious in a way that no table or individual chart could achieve.
+:::
+
+**Key Insights:**
+
+- **New towns** built after 2000 (Punggol, Sengkang) show dramatically wide bases — young families who moved in together are now raising children, producing a characteristic bottom-heavy pyramid.
+- **Established estates** from the 1970s–80s (Marine Parade, Toa Payoh) have inverted profiles — the original residents are still living there and have aged together, creating top-heavy shapes and high old-age dependency.
+- **Type of Dwelling** adds a further layer: when `TOD` is used as a filter or colour, HDB 3–5 Room flats dominate most planning areas numerically, while private condominiums show a distinctly different profile skewed toward the 30–50 age band — reflecting the typical first-time private buyer demographic.
+
+---
+
+## Summary of Key Learnings
+
+::: callout-note
+## Class Takeaways
+
+**Superstore — analytical patterns learned:**
+
+- **Quadrant analysis** is more readable than raw scatter plots for multi-entity comparison because percentile ranking distributes every point evenly across the canvas regardless of scale differences. The business action implied by each quadrant is immediately obvious.
+- **Pareto charts** are the go-to for concentration analysis. The 80/20 rule appears consistently — in customers, in sub-categories, and in geographic markets. Identifying the vital few is always the first step before making resource allocation decisions.
+- **Dual-axis trend charts** prevent the common management trap of celebrating revenue growth while margins quietly deteriorate. Showing sales and profit together in one view forces the question: are we growing in a healthy way?
+
+**Population data — analytical patterns learned:**
+
+- **Population pyramids** pack three variables (age, sex, count) into one compact, highly readable chart. Learning to interpret the shape — expansive, constrictive, or stationary — is a transferable skill applicable to any demographic dataset globally.
+- **Trellis / small multiples** is the correct pattern whenever you need to compare the same chart type across many geographic or categorical units simultaneously. It preserves spatial context while enabling immediate pattern recognition across panels.
+- **Derived metrics** (old-age dependency ratio, youth dependency ratio) transform raw population counts into planning-relevant indicators that are meaningful to policy makers and non-technical stakeholders.
+
+**Tableau workflow habits established in class:**
+
+- Filter out zero-population rows at the data source level before building any chart.
+- Always manually sort age group dimensions — alphabetical sorting produces a nonsensical axis for coded age labels.
+- Use percentile rank table calculations to normalise axes in scatter plots involving entities at very different scales.
+- Publish to Tableau Public early and often — the embed process into Quarto takes under two minutes once the workbook is online.
+:::
